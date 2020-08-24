@@ -1,0 +1,185 @@
+@import 'globals';
+@import url(https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Open+Sans:wght@300;400;800&display=swap);
+
+.gameScreen {
+  margin-top: -2vh;
+  margin-bottom: 75px;
+}
+
+.rightSide {
+  overflow: hidden;
+}
+
+.wordList {
+  overflow-y: scroll;
+  height: 250px; //250px
+  width: 200px;
+  border: 1px solid $soft-grey;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 0px 20px 0px 20px;
+}
+
+.wordListLabel {
+  @extend .horizontallyCentered;
+  color: $text-grey;
+  margin-bottom: 15px;
+}
+
+.wordEntry {
+  margin: 5px 0px;
+  width: 100%;
+  color: $text-grey;
+  font-style: italic;
+}
+
+.entryBox {
+  width: 200px;
+  border: 1px solid $soft-grey;
+  border-radius: 10px;
+  height: 30px;
+  line-height: 30px;
+  padding: 5px 15px;
+  margin: 20px 20px 0px 20px;
+}
+
+.entryBoxPlaceholder {
+  color: $soft-grey;
+}
+
+.board {
+  margin: 0px 20px 20px 20px;
+}
+
+.horizontalSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tileRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tile {
+  @extend .horizontallyCentered;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  position: relative; /* For positioning the pseudo-element */
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  width: 30px;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 40px;
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+.clickableTile,
+.disabledTile {
+  @extend .tile;
+}
+
+.clickableTile::before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+  box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 500ms;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.clickedTile {
+  background-color: $soft-green;
+}
+
+.clickableTile:hover:not(.clickedTile) {
+  background-color: $soft-grey;
+}
+
+.clickableTile:hover {
+  cursor: pointer;
+}
+
+.clickableTile:hover::before {
+  opacity: 1;
+}
+
+.timer {
+  @extend .horizontallyCentered;
+  margin: 40px 0px;
+  width: 100%;
+  font-size: 30px;
+  color: $soft-grey;
+}
+
+.timerText {
+  margin-left: 10px;
+  line-height: 30px;
+}
+
+.boardButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 24px;
+}
+
+@media screen and (max-width: 600px) {
+  .tile {
+    width: 5vw;
+    padding: 1.66vw 2.5vw;
+    margin: 0.83vw;
+    border-radius: 1.66vw;
+    font-size: 7vw;
+    line-height: 7vw;
+  }
+
+  .wordList {
+    height: 41.66vw;
+    width: 33.33vw;
+    border-radius: 1.33vw;
+    padding: 2.5vw;
+    margin: 0px 3.33vw 0px 3.33vw;
+    font-size: 3vw;
+  }
+
+  .wordListLabel {
+    margin-bottom: 1.33vw;
+  }
+
+  .wordEntry {
+    margin: 0.83vw 0px;
+  }
+
+  .entryBox {
+    width: 33.33vw;
+    border-radius: 1.33vw;
+    height: 5vw;
+    line-height: 5vw;
+    font-size: 3vw;
+    padding: 0.83vw 2.5vw;
+    margin: 3.33vw 3.33vw 0px 3.33vw;
+  }
+
+  .timerText {
+    margin-left: 1.66vw;
+    line-height: 5vw;
+  }
+
+  .timer {
+    margin: 6.66vw 0px;
+    font-size: 5vw;
+  }
+}

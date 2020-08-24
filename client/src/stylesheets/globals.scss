@@ -1,0 +1,14 @@
+$soft-green: #d5e8d4;
+$dark-green: #82b366;
+$text-green: #354f27;
+$soft-grey: #cdcdcd;
+$dark-grey: #a6a6a6;
+$text-grey: #43464b;
+$dark-error: #a63232;
+$soft-error: #ff9494;
+
+.horizontallyCentered {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

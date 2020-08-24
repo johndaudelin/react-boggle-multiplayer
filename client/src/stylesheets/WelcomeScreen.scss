@@ -1,0 +1,6 @@
+@import 'globals';
+
+.welcomeScreenButton {
+  @extend .horizontallyCentered;
+  margin-top: 50px;
+}

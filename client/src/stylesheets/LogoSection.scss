@@ -1,0 +1,15 @@
+@import 'globals';
+
+.poweredByText {
+  @extend .horizontallyCentered;
+  font-family: 'Open Sans', sans-serif;
+  color: $text-grey;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.logo {
+  margin-bottom: 15px;
+  width: 100px;
+  height: 100px;
+}
