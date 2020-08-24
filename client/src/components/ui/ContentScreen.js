@@ -1,10 +1,12 @@
 import React from 'react'
+import socketIOClient from 'socket.io-client'
 import Header from './Header'
 import LogoSection from './LogoSection'
 import WelcomeScreen from './WelcomeScreen'
 import GameScreen from '../containers/GameScreen'
 import FinishedScreen from '../containers/FinishedScreen'
 import '../../stylesheets/index.scss'
+import { SERVER_ENDPOINT } from '../../constants'
 
 export default class ContentScreen extends React.Component {
   constructor (props) {
@@ -15,6 +17,13 @@ export default class ContentScreen extends React.Component {
     }
 
     this.changeMode = this.changeMode.bind(this)
+  }
+
+  componentDidMount () {
+    const socket = socketIOClient(SERVER_ENDPOINT)
+    socket.on('FromAPI', data => {
+      console.log(data)
+    })
   }
 
   changeMode (mode) {
