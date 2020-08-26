@@ -21,9 +21,54 @@ export default class ContentScreen extends React.Component {
 
   componentDidMount () {
     const socket = socketIOClient(SERVER_ENDPOINT)
-    socket.on('FromAPI', data => {
+
+    socket.on('UPDATE_ROOM_INFO', roomData => {
+      console.log('Room info updated: ', roomData)
+    })
+    socket.on('TIMER_UPDATE', timer => {
+      console.log('Timer updated: ', timer)
+    })
+    socket.on('END_GAME', roomData => {
+      console.log('Game ended: ', roomData)
+    })
+
+    console.log('Creating room1')
+    socket.emit('START_ROOM', {
+      roomName: 'room1',
+      userName: 'John'
+    })
+
+    console.log('Creating room2')
+    socket.emit('START_ROOM', {
+      roomName: 'room2',
+      userName: 'daniel'
+    })
+
+    console.log('Leaving room2')
+    socket.emit('LEAVE_ROOM', {
+      roomName: 'room2',
+      userName: 'daniel'
+    })
+
+    console.log('Joining room1')
+    socket.emit('JOIN_ROOM', {
+      roomName: 'room1',
+      userName: 'daniel'
+    })
+
+    console.log('Starting Game')
+    socket.emit('START_GAME', {
+      roomName: 'room1',
+      userName: 'John'
+    })
+
+    socket.on('periodicPing', data => {
       console.log(data)
     })
+  }
+
+  componentWillUnmount () {
+    this.socket.disconnect()
   }
 
   changeMode (mode) {
