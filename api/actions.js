@@ -120,3 +120,13 @@ exports.startGame = (socket, config) => {
     }
   }
 }
+
+exports.addWordScore = (socket, config) => {
+  if (roomExists(config.roomName)) {
+    let room = getRoom(config.roomName)
+    let player = room.players.filter(
+      player => player.name === config.userName
+    )[0]
+    player.scorecard.push(config.wordScore)
+  }
+}
