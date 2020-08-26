@@ -1,6 +1,41 @@
 @import 'globals';
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap);
 
-.welcomeScreenButton {
-  @extend .horizontallyCentered;
+.welcomeScreen {
+}
+
+.enterRoomSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 50px;
+}
+
+.enterRoomSection input {
+  position: relative;
+  margin-bottom: 30px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.3);
+  height: 40px;
+  text-align: center;
+  background-color: transparent;
+  font-size: 17px;
+  color: $text-grey;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.separator {
+  @extend .horizontallyCentered;
+  margin: 30px 0px;
+  font-size: 15px;
+  font-family: 'Open Sans', sans-serif;
+  color: $soft-grey;
+  font-style: italic;
+}
+
+.singlePlayerButton {
+  @extend .horizontallyCentered;
+  margin-bottom: 60px;
 }

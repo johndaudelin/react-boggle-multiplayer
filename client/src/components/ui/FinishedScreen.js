@@ -36,7 +36,7 @@ export default class FinishedScreen extends React.Component {
         <div className='finalScoreSection'>
           <FinalScore totalScore={this.props.totalScore} />
         </div>
-        <div className='horizontallyCentered'>
+        <div className='wrapContainer'>
           {this.props.mode == 'single' ? (
             <Scorecard scorecard={this.props.scorecard} />
           ) : (
@@ -56,11 +56,11 @@ export default class FinishedScreen extends React.Component {
             value='Play Again'
           />
         </div>
-        <div className='leaveGameButton'>
+        <div className='leaveRoomButton'>
           <Button
             onClick={this.props.leaveGame}
             type='cancel'
-            value='Leave Game'
+            value='Leave Room'
           />
         </div>
       </div>

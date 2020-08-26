@@ -8,11 +8,14 @@ export default class WelcomeScreen extends React.Component {
     return (
       <div className='welcomeScreen'>
         <EnterRoomSection />
-        <Button
-          onClick={this.props.startSinglePlayerGame}
-          type='primary'
-          value='Play Single Player'
-        />
+        <span className='separator'>or</span>
+        <div className='singlePlayerButton'>
+          <Button
+            onClick={this.props.startSinglePlayerGame}
+            type='primary'
+            value='Single Player'
+          />
+        </div>
       </div>
     )
   }

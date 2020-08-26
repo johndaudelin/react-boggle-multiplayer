@@ -136,6 +136,12 @@
   margin: 0px 24px;
 }
 
+.leaveGameSection {
+  @extend .horizontallyCentered;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 @media screen and (max-width: 600px) {
   .tile {
     width: 5vw;

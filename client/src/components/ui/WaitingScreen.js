@@ -27,6 +27,7 @@ export default class WaitingScreen extends React.Component {
   render () {
     return (
       <div className='waitingScreen'>
+        <span className='roomLabel'>{this.props.room.name}</span>
         <div className='playersDisplay'>
           {this.props.room.players.map((player, index) => (
             <PlayerIcon key={index} name={player.name} />
@@ -42,8 +43,8 @@ export default class WaitingScreen extends React.Component {
         <div className='leaveGameButton'>
           <Button
             onClick={this.props.leaveGame}
-            type='primary'
-            value='Leave Game'
+            type='cancel'
+            value='Leave Room'
           />
         </div>
       </div>

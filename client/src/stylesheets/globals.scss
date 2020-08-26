@@ -6,9 +6,15 @@ $dark-grey: #a6a6a6;
 $text-grey: #43464b;
 $dark-error: #a63232;
 $soft-error: #ff9494;
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap);
 
 .horizontallyCentered {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.standardText {
+  font-family: 'Open Sans', sans-serif;
+  color: $text-grey;
 }

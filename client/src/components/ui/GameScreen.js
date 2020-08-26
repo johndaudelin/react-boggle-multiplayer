@@ -76,7 +76,7 @@ export default class GameScreen extends React.Component {
   componentDidMount () {
     this.props.initializeScorecard()
     this.props.resetCurrentWord()
-    if (this.props.mode == 'single') {
+    if (this.props.mode === 'single') {
       this.props.initializeBoard()
       this.props.initializeTimer()
       this.setState({
@@ -125,6 +125,7 @@ export default class GameScreen extends React.Component {
             <EntryBox />
           </div>
         </div>
+        {/*
         <div className='leaveGameSection'>
           <Button
             onClick={() => {
@@ -136,7 +137,7 @@ export default class GameScreen extends React.Component {
             value='Leave Game'
             type='cancel'
           />
-        </div>
+          </div>*/}
       </div>
     )
   }

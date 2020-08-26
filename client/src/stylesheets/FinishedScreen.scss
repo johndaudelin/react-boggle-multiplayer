@@ -3,6 +3,12 @@
 .finishedScreen {
 }
 
+.wrapContainer {
+  @extend .horizontallyCentered;
+  width: 100vw;
+  flex-wrap: wrap;
+}
+
 .congratulations {
   @extend .horizontallyCentered;
   color: $text-grey;
@@ -38,7 +44,12 @@
 
 .playAgainButton {
   @extend .horizontallyCentered;
-  margin: 5vh 0px 6vh 0px;
+  margin: 5vh 0px 2vh 0px;
+}
+
+.leaveRoomButton {
+  @extend .horizontallyCentered;
+  margin: 2vh 0px 6vh 0px;
 }
 
 @media screen and (max-height: 1000px) {
