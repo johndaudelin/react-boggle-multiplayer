@@ -5,8 +5,7 @@ const c = require('./constants.js')
 exports.startRoom = (socket, config) => {
   if (roomExists(config.roomName)) {
     console.log(
-      'User ' + config.userName + ' tried to create an already existing room: ',
-      config.roomName
+      `User ${config.userName} tried creating already existing room ${config.roomName}`
     )
   } else {
     const room = {
@@ -22,12 +21,7 @@ exports.startRoom = (socket, config) => {
       board: []
     }
 
-    console.log(
-      'User ',
-      config.userName,
-      ' creating new room: ',
-      config.roomName
-    )
+    console.log(`User ${config.userName} starting new room ${config.roomName}`)
 
     app.gameState.rooms.push(room)
     socket.join(config.roomName)
@@ -38,13 +32,12 @@ exports.startRoom = (socket, config) => {
 exports.leaveRoom = (socket, config) => {
   if (!roomExists(config.roomName)) {
     console.log(
-      'User ' + config.userName + ' tried to leave a non-existent room: ',
-      config.roomName
+      `User ${config.userName} tried leaving non-existant room ${config.roomName}`
     )
   } else {
     let room = getRoom(config.roomName)
 
-    console.log('User ', config.userName, ' leaving room: ', config.roomName)
+    console.log(`User ${config.userName} leaving ${config.roomName}`)
 
     room.players = room.players.filter(
       player => player.name !== config.userName
@@ -57,22 +50,24 @@ exports.leaveRoom = (socket, config) => {
 exports.joinRoom = (socket, config) => {
   if (!roomExists(config.roomName)) {
     console.log(
-      'User ',
-      config.userName,
-      ' tried to join a non-existant room: ',
-      config.roomName
+      `User ${config.userName} tried joining non-existant room ${config.roomName}`
     )
   } else {
     let room = getRoom(config.roomName)
+    if (room.players.some(player => player.name === config.userName)) {
+      console.log(
+        `User ${config.userName} tried joining ${config.roomName} twice.`
+      )
+    } else {
+      console.log(`User ${config.userName} joining ${config.roomName}`)
 
-    console.log('User ', config.userName, ' joining room: ', config.roomName)
-
-    room.players.push({
-      name: config.userName,
-      scorecard: []
-    })
-    socket.join(config.roomName)
-    app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
+      room.players.push({
+        name: config.userName,
+        scorecard: []
+      })
+      socket.join(config.roomName)
+      app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
+    }
   }
 }
 
@@ -82,18 +77,10 @@ exports.startGame = (socket, config) => {
     let room = getRoom(config.roomName)
     if (room.activeGame === true) {
       console.log(
-        'User ',
-        config.userName,
-        ' tried to start an already begun game in room: ',
-        config.roomName
+        `User ${config.userName} tried to start an already begun game in ${config.roomName}`
       )
     } else {
-      console.log(
-        'User ',
-        config.userName,
-        ' starting game in room: ',
-        config.roomName
-      )
+      console.log(`User ${config.userName} starting game in ${config.roomName}`)
 
       room.activeGame = true
 
