@@ -113,3 +113,13 @@ export const initializeBoard = () => {
     payload: tiles
   }
 }
+
+export const changeUserName = userName => ({
+  type: Actions.CHANGE_USERNAME,
+  payload: userName
+})
+
+export const updateRoom = roomObj => ({
+  type: Actions.UPDATE_ROOM,
+  payload: roomObj
+})

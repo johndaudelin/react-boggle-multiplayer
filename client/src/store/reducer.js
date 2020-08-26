@@ -45,9 +45,29 @@ export const board = (state = [], action) => {
   }
 }
 
+export const userName = (state = '', action) => {
+  switch (action.type) {
+    case Actions.CHANGE_USERNAME:
+      return action.payload
+    default:
+      return state
+  }
+}
+
+export const room = (state = null, action) => {
+  switch (action.type) {
+    case Actions.UPDATE_ROOM:
+      return action.payload
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   scorecard,
   board,
   timer,
-  currentWord
+  currentWord,
+  userName,
+  room
 })

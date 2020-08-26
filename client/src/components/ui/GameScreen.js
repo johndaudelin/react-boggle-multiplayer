@@ -77,6 +77,7 @@ export default class GameScreen extends React.Component {
     this.props.initializeBoard()
     this.props.initializeTimer()
     this.props.initializeScorecard()
+    this.props.resetCurrentWord()
     this.setState({
       timeInterval: setInterval(this.props.decreaseTimer, 1000)
     })

@@ -31,14 +31,18 @@ export const Actions = {
   REMOVE_FROM_CURRENT_WORD: 'REMOVE_FROM_CURRENT_WORD',
   ADD_WORD: 'ADD_WORD',
   CHANGE_CURRENT_WORD: 'CHANGE_CURRENT_WORD',
-  RESET_CURRENT_WORD: 'RESET_CURRENT_WORD'
+  RESET_CURRENT_WORD: 'RESET_CURRENT_WORD',
+  CHANGE_USERNAME: 'CHANGE_USERNAME',
+  UPDATE_ROOM: 'UPDATE_ROOM'
 }
 
 export const defaultState = {
   scorecard: [],
   board: [],
   currentWord: [],
-  timer: 180
+  timer: 90,
+  userName: '',
+  room: null
 }
 
 // For reference only. Not used in game code.
@@ -83,5 +87,65 @@ export const sampleState = {
     [1, 3],
     [0, 7]
   ],
-  timer: 180
+  timer: 90,
+  userName: 'John',
+  room: {
+    name: 'Room1',
+    players: [
+      {
+        name: 'John',
+        scorecard: [
+          {
+            word: 'cat',
+            score: '1'
+          },
+          {
+            word: 'that',
+            score: '1'
+          },
+          {
+            word: 'eat',
+            score: '1'
+          },
+          {
+            word: 'cheat',
+            score: '2'
+          }
+        ]
+      },
+      {
+        name: 'Daniel',
+        scorecard: [
+          {
+            word: 'eat',
+            score: '1'
+          },
+          {
+            word: 'ate',
+            score: '1'
+          }
+        ]
+      }
+    ],
+    activeGame: false,
+    timer: 90,
+    board: [
+      'Z',
+      'A',
+      'E',
+      'H',
+      'E',
+      'T',
+      'C',
+      'S',
+      'A',
+      'X',
+      'Y',
+      'I',
+      'T',
+      'H',
+      'A',
+      'Q'
+    ]
+  }
 }
