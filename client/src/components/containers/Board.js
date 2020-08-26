@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
   return {
-    board: state.board
+    board: state.mode == 'multi' ? state.room.board : state.singlePlayer.board
   }
 }
 

@@ -1,10 +1,9 @@
 exports.SOCKET_EVENTS = {
   // client --> server
-  START_ROOM: 'START_ROOM',
-  JOIN_ROOM: 'JOIN_ROOM',
+  ENTER_ROOM: 'ENTER_ROOM',
   LEAVE_ROOM: 'LEAVE_ROOM',
   START_GAME: 'START_GAME',
-  ADD_WORD_SCORE: 'ADD_WORD_SCORE',
+  ADD_SCORECARD: 'ADD_SCORECARD',
   // server --> client
   UPDATE_ROOM_INFO: 'UPDATE_ROOM_INFO',
   TIMER_UPDATE: 'TIMER_UPDATE',
@@ -70,6 +69,7 @@ exports.sampleGameState = {
           ]
         }
       ],
+      waitingForPlayers: false,
       activeGame: false,
       timer: 90,
       board: [

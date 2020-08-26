@@ -21,9 +21,10 @@ export default class FinishedScreen extends React.Component {
 
   handleEnterPress (event) {
     if (event.keyCode === 13) {
-      this.props.changeMode('game')
+      this.props.startGame()
     }
   }
+
   render () {
     return (
       <div className='finishedScreen'>
@@ -36,13 +37,30 @@ export default class FinishedScreen extends React.Component {
           <FinalScore totalScore={this.props.totalScore} />
         </div>
         <div className='horizontallyCentered'>
-          <Scorecard totalScore={this.props.totalScore} />
+          {this.props.mode == 'single' ? (
+            <Scorecard scorecard={this.props.scorecard} />
+          ) : (
+            this.props.room.players.map((player, key) => (
+              <Scorecard
+                key={key}
+                name={player.name}
+                scorecard={player.scorecard}
+              />
+            ))
+          )}
         </div>
         <div className='playAgainButton'>
           <Button
-            onClick={() => this.props.changeMode('game')}
+            onClick={this.props.startGame}
             type='primary'
             value='Play Again'
+          />
+        </div>
+        <div className='leaveGameButton'>
+          <Button
+            onClick={this.props.leaveGame}
+            type='cancel'
+            value='Leave Game'
           />
         </div>
       </div>

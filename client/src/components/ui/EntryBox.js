@@ -2,22 +2,6 @@ import React, { Component } from 'react'
 import '../../stylesheets/GameScreen.scss'
 
 export default class EntryBox extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      blinking: true
-    }
-  }
-
-  componentDidMount () {
-    setInterval(() => {
-      this.setState(prevState => ({
-        blinking: !prevState.blinking
-      }))
-    }, 500)
-  }
-
   render () {
     return (
       <div className='entryBox'>

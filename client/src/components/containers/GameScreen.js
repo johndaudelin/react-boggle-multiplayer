@@ -49,10 +49,11 @@ const mapStateToProps = state => {
   }
 
   return {
-    board: state.board,
+    mode: state.mode,
+    board: state.mode == 'multi' ? state.room.board : state.singlePlayer.board,
     currentWord: state.currentWord,
     reachableTiles,
-    timer: state.timer
+    timer: state.mode == 'multi' ? state.room.timer : state.singlePlayer.timer
   }
 }
 

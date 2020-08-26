@@ -2,11 +2,23 @@ const app = require('./app.js')
 const { roomExists, getRoom } = require('./helpers.js')
 const c = require('./constants.js')
 
-exports.startRoom = (socket, config) => {
+exports.enterRoom = (socket, config) => {
   if (roomExists(config.roomName)) {
-    console.log(
-      `User ${config.userName} tried creating already existing room ${config.roomName}`
-    )
+    let room = getRoom(config.roomName)
+    if (room.players.some(player => player.name === config.userName)) {
+      console.log(
+        `User ${config.userName} tried joining ${config.roomName} twice.`
+      )
+    } else {
+      console.log(`User ${config.userName} joining ${config.roomName}`)
+
+      room.players.push({
+        name: config.userName,
+        scorecard: []
+      })
+      socket.join(config.roomName)
+      app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
+    }
   } else {
     const room = {
       name: config.roomName,
@@ -16,6 +28,7 @@ exports.startRoom = (socket, config) => {
           scorecard: []
         }
       ],
+      waitingForPlayers: true,
       activeGame: false,
       timer: 90,
       board: []
@@ -42,31 +55,17 @@ exports.leaveRoom = (socket, config) => {
     room.players = room.players.filter(
       player => player.name !== config.userName
     )
-    socket.leave(config.roomName)
     socket.to(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
-  }
-}
+    socket.leave(config.roomName)
 
-exports.joinRoom = (socket, config) => {
-  if (!roomExists(config.roomName)) {
-    console.log(
-      `User ${config.userName} tried joining non-existant room ${config.roomName}`
-    )
-  } else {
-    let room = getRoom(config.roomName)
-    if (room.players.some(player => player.name === config.userName)) {
+    if (room.players.length === 0) {
       console.log(
-        `User ${config.userName} tried joining ${config.roomName} twice.`
+        `Room ${config.roomName} is being deleted because last user left`
       )
-    } else {
-      console.log(`User ${config.userName} joining ${config.roomName}`)
-
-      room.players.push({
-        name: config.userName,
-        scorecard: []
-      })
-      socket.join(config.roomName)
-      app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
+      app.gameState.rooms = app.gameState.rooms.filter(
+        room => room.name !== config.roomName
+      )
+      app.intervals[config.roomName] = null
     }
   }
 }
@@ -83,37 +82,41 @@ exports.startGame = (socket, config) => {
       console.log(`User ${config.userName} starting game in ${config.roomName}`)
 
       room.activeGame = true
+      room.waitingForPlayers = false
+      room.timer = 90
+      room.players = room.players.map(player => ({
+        name: player.name,
+        scorecard: []
+      }))
 
       room.board = []
       for (let i = 0; i < 16; i++) {
         room.board.push(c.TILES[i].charAt(Math.floor(Math.random() * 6)))
       }
 
-      app.io.in(config.roomName).emit(c.SOCKET_EVENTS.START_GAME, room)
+      app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
 
       app.intervals[config.roomName] = setInterval(() => {
         room.timer--
         if (room.timer === 0) {
           room.activeGame = false
-          room.timer = 90
           app.io.in(config.roomName).emit(c.SOCKET_EVENTS.END_GAME, room)
           clearInterval(app.intervals[config.roomName])
         } else {
-          app.io
-            .in(config.roomName)
-            .emit(c.SOCKET_EVENTS.TIMER_UPDATE, room.timer)
+          app.io.in(config.roomName).emit(c.SOCKET_EVENTS.TIMER_UPDATE, room)
         }
       }, 1000)
     }
   }
 }
 
-exports.addWordScore = (socket, config) => {
+exports.addScorecard = (socket, config) => {
   if (roomExists(config.roomName)) {
     let room = getRoom(config.roomName)
     let player = room.players.filter(
-      player => player.name === config.userName
+      player => player.name == config.userName
     )[0]
-    player.scorecard.push(config.wordScore)
+    player.scorecard = config.scorecard
+    app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
   }
 }

@@ -1,0 +1,26 @@
+@import 'globals';
+
+.waitingScreen {
+}
+
+.playersDisplay {
+  @extend .horizontallyCentered;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  color: $soft-grey;
+}
+
+.playerName {
+  font-size: 20px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.startGameButton {
+  @extend .horizontallyCentered;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}

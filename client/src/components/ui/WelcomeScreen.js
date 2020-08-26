@@ -1,35 +1,17 @@
 import React from 'react'
 import '../../stylesheets/WelcomeScreen.scss'
 import Button from './Button'
+import EnterRoomSection from '../containers/EnterRoomSection'
 
 export default class WelcomeScreen extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.handleEnterPress = this.handleEnterPress.bind(this)
-  }
-
-  componentDidMount () {
-    document.addEventListener('keydown', this.handleEnterPress)
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('keydown', this.handleEnterPress)
-  }
-
-  handleEnterPress (event) {
-    if (event.keyCode === 13) {
-      this.props.changeMode('game')
-    }
-  }
-
   render () {
     return (
-      <div className='welcomeScreenButton'>
+      <div className='welcomeScreen'>
+        <EnterRoomSection />
         <Button
-          onClick={() => this.props.changeMode('game')}
+          onClick={this.props.startSinglePlayerGame}
           type='primary'
-          value='Start Game'
+          value='Play Single Player'
         />
       </div>
     )

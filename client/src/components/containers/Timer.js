@@ -1,11 +1,17 @@
 import Timer from '../ui/Timer'
 import { connect } from 'react-redux'
+import { updateRoom } from '../../actions'
 
 const mapStateToProps = state => ({
-  minutes: Math.floor(state.timer / 60),
-  seconds: state.timer % 60
+  roomTimer: state.room?.timer,
+  singlePlayerTimer: state.singlePlayer.timer,
+  mode: state.mode
 })
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+  updateRoom (room) {
+    dispatch(updateRoom(room))
+  }
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer)

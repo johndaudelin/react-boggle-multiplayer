@@ -10,7 +10,11 @@ export const addWord = () => (dispatch, getState) => {
   const state = getState()
   const word = state.currentWord
     .map(arr => arr[0])
-    .map(index => getState().board[index])
+    .map(index =>
+      state.mode == 'single'
+        ? state.singlePlayer.board[index]
+        : state.room.board[index]
+    )
     .join('')
   const wordLength = word.length
 
@@ -122,4 +126,9 @@ export const changeUserName = userName => ({
 export const updateRoom = roomObj => ({
   type: Actions.UPDATE_ROOM,
   payload: roomObj
+})
+
+export const changeMode = mode => ({
+  type: Actions.CHANGE_MODE,
+  payload: mode
 })

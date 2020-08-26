@@ -25,26 +25,6 @@ export const scorecard = (state = [], action) => {
   }
 }
 
-export const timer = (state = 180, action) => {
-  switch (action.type) {
-    case Actions.DECREASE_TIMER:
-      return state - 1
-    case Actions.INITIALIZE_TIMER:
-      return 90
-    default:
-      return state
-  }
-}
-
-export const board = (state = [], action) => {
-  switch (action.type) {
-    case Actions.INITIALIZE_BOARD:
-      return action.payload
-    default:
-      return state
-  }
-}
-
 export const userName = (state = '', action) => {
   switch (action.type) {
     case Actions.CHANGE_USERNAME:
@@ -63,10 +43,47 @@ export const room = (state = null, action) => {
   }
 }
 
+export const singlePlayer = (
+  state = {
+    board: [],
+    timer: 90
+  },
+  action
+) => {
+  switch (action.type) {
+    case Actions.DECREASE_TIMER:
+      return {
+        board: [...state.board],
+        timer: state.timer - 1
+      }
+    case Actions.INITIALIZE_TIMER:
+      return {
+        board: [...state.board],
+        timer: 90
+      }
+    case Actions.INITIALIZE_BOARD:
+      return {
+        board: action.payload,
+        timer: state.timer
+      }
+    default:
+      return state
+  }
+}
+
+export const mode = (state = 'multi', action) => {
+  switch (action.type) {
+    case Actions.CHANGE_MODE:
+      return action.payload
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
+  mode,
+  singlePlayer,
   scorecard,
-  board,
-  timer,
   currentWord,
   userName,
   room

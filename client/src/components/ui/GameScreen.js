@@ -74,27 +74,28 @@ export default class GameScreen extends React.Component {
   }
 
   componentDidMount () {
-    this.props.initializeBoard()
-    this.props.initializeTimer()
     this.props.initializeScorecard()
     this.props.resetCurrentWord()
-    this.setState({
-      timeInterval: setInterval(this.props.decreaseTimer, 1000)
-    })
+    if (this.props.mode == 'single') {
+      this.props.initializeBoard()
+      this.props.initializeTimer()
+      this.setState({
+        timeInterval: setInterval(this.props.decreaseTimer, 1000)
+      })
+    }
     document.addEventListener('keydown', this.handleKeyPress)
   }
 
   componentDidUpdate () {
-    if (this.props.timer <= 0) {
+    if (this.props.mode == 'single' && this.props.timer <= 0) {
       this.endGame()
     }
   }
 
   endGame () {
     clearInterval(this.state.timeInterval)
-    this.props.resetCurrentWord()
     document.removeEventListener('keydown', this.handleKeyPress)
-    this.props.changeMode('finished')
+    this.props.decreaseTimer() // set singlePlayer.timer = -1 to recognize end of game in GameScreen component
   }
 
   render () {
@@ -123,6 +124,18 @@ export default class GameScreen extends React.Component {
             <WordList />
             <EntryBox />
           </div>
+        </div>
+        <div className='leaveGameSection'>
+          <Button
+            onClick={() => {
+              if (this.props.mode == 'single') {
+                this.endGame()
+              }
+              this.props.leaveGame()
+            }}
+            value='Leave Game'
+            type='cancel'
+          />
         </div>
       </div>
     )

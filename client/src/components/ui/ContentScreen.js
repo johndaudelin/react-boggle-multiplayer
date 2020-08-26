@@ -1,51 +1,70 @@
 import React from 'react'
-import socketIOClient from 'socket.io-client'
 import Header from './Header'
 import LogoSection from './LogoSection'
 import WelcomeScreen from './WelcomeScreen'
+import WaitingScreen from '../containers/WaitingScreen'
 import GameScreen from '../containers/GameScreen'
 import FinishedScreen from '../containers/FinishedScreen'
+import SocketContext from '../socket-context'
 import '../../stylesheets/index.scss'
-import { SERVER_ENDPOINT } from '../../constants'
 
-export default class ContentScreen extends React.Component {
+class ContentScreen extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      mode: 'welcome'
-    }
-
-    this.changeMode = this.changeMode.bind(this)
+    this.startGame = this.startGame.bind(this)
+    this.startSinglePlayerGame = this.startSinglePlayerGame.bind(this)
+    this.leaveGame = this.leaveGame.bind(this)
+    this.addScorecard = this.addScorecard.bind(this)
   }
 
   componentDidMount () {
-    const socket = socketIOClient(SERVER_ENDPOINT)
-
-    socket.on('UPDATE_ROOM_INFO', roomData => {
-      console.log('Room info updated: ', roomData)
+    this.props.socket.on('UPDATE_ROOM_INFO', roomData => {
+      this.props.updateRoom(roomData)
     })
-    socket.on('TIMER_UPDATE', timer => {
-      console.log('Timer updated: ', timer)
-    })
-    socket.on('END_GAME', roomData => {
-      console.log('Game ended: ', roomData)
-    })
-
-    console.log('Creating room1')
-    socket.emit('START_ROOM', {
-      roomName: 'room1',
-      userName: 'John'
+    this.props.socket.on('END_GAME', roomData => {
+      this.addScorecard()
+      this.props.updateRoom(roomData)
     })
   }
 
   componentWillUnmount () {
-    this.socket.disconnect()
+    this.leaveGame()
+    this.props.socket.disconnect()
   }
 
-  changeMode (mode) {
-    this.setState({
-      mode
+  startGame () {
+    this.props.socket.emit('START_GAME', {
+      roomName: this.props.room.name,
+      userName: this.props.userName
+    })
+  }
+
+  startSinglePlayerGame () {
+    if (this.props.mode == 'multi') {
+      this.props.changeMode('single')
+    } else {
+      this.props.initializeTimer()
+    }
+  }
+
+  leaveGame () {
+    if (this.props.mode == 'multi') {
+      this.props.socket.emit('LEAVE_ROOM', {
+        roomName: this.props.room.name,
+        userName: this.props.userName
+      })
+      this.props.updateRoom(null)
+    } else {
+      this.props.changeMode('multi')
+    }
+  }
+
+  addScorecard () {
+    this.props.socket.emit('ADD_SCORECARD', {
+      roomName: this.props.room.name,
+      userName: this.props.userName,
+      scorecard: this.props.scorecard
     })
   }
 
@@ -54,16 +73,43 @@ export default class ContentScreen extends React.Component {
       <div className='app'>
         <div>
           <Header />
-          {this.state.mode === 'welcome' ? (
-            <WelcomeScreen changeMode={this.changeMode} />
-          ) : this.state.mode === 'game' ? (
-            <GameScreen changeMode={this.changeMode} />
+          {this.props.mode == 'multi' ? (
+            !this.props.room ? (
+              <WelcomeScreen
+                startSinglePlayerGame={this.startSinglePlayerGame}
+              />
+            ) : this.props.room.waitingForPlayers ? (
+              <WaitingScreen
+                startGame={this.startGame}
+                leaveGame={this.leaveGame}
+              />
+            ) : this.props.room.activeGame ? (
+              <GameScreen leaveGame={this.leaveGame} />
+            ) : (
+              <FinishedScreen
+                startGame={this.startGame}
+                leaveGame={this.leaveGame}
+              />
+            )
+          ) : this.props.singlePlayer.timer > -1 ? (
+            <GameScreen leaveGame={this.leaveGame} />
           ) : (
-            <FinishedScreen changeMode={this.changeMode} />
+            <FinishedScreen
+              startGame={this.startSinglePlayerGame}
+              leaveGame={this.leaveGame}
+            />
           )}
         </div>
         <LogoSection />
       </div>
     )
   }
+}
+
+export default function (props) {
+  return (
+    <SocketContext.Consumer>
+      {socket => <ContentScreen {...props} socket={socket} />}
+    </SocketContext.Consumer>
+  )
 }

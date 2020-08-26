@@ -33,20 +33,26 @@ export const Actions = {
   CHANGE_CURRENT_WORD: 'CHANGE_CURRENT_WORD',
   RESET_CURRENT_WORD: 'RESET_CURRENT_WORD',
   CHANGE_USERNAME: 'CHANGE_USERNAME',
-  UPDATE_ROOM: 'UPDATE_ROOM'
+  UPDATE_ROOM: 'UPDATE_ROOM',
+  CHANGE_MODE: 'CHANGE_MODE'
 }
 
 export const defaultState = {
-  scorecard: [],
-  board: [],
-  currentWord: [],
-  timer: 90,
   userName: '',
+  mode: 'multi',
+  scorecard: [],
+  currentWord: [],
+  singlePlayer: {
+    board: [],
+    timer: 90
+  },
   room: null
 }
 
 // For reference only. Not used in game code.
 export const sampleState = {
+  userName: 'John',
+  mode: 'multi',
   scorecard: [
     {
       word: 'cat',
@@ -65,30 +71,31 @@ export const sampleState = {
       score: '2'
     }
   ],
-  board: [
-    'Z',
-    'A',
-    'E',
-    'H',
-    'E',
-    'T',
-    'C',
-    'S',
-    'A',
-    'X',
-    'Y',
-    'I',
-    'T',
-    'H',
-    'A',
-    'Q'
-  ],
   currentWord: [
     [1, 3],
     [0, 7]
   ],
-  timer: 90,
-  userName: 'John',
+  singlePlayer: {
+    timer: 90,
+    board: [
+      'Z',
+      'A',
+      'E',
+      'H',
+      'E',
+      'T',
+      'C',
+      'S',
+      'A',
+      'X',
+      'Y',
+      'I',
+      'T',
+      'H',
+      'A',
+      'Q'
+    ]
+  },
   room: {
     name: 'Room1',
     players: [
@@ -127,6 +134,7 @@ export const sampleState = {
         ]
       }
     ],
+    waitingForPlayers: false,
     activeGame: false,
     timer: 90,
     board: [
