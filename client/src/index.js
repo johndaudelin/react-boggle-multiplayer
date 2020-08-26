@@ -15,8 +15,6 @@ const saveState = () => {
   localStorage['redux-store'] = state
 }
 
-const initialState = defaultState
-
 const store = storeFactory(initialState)
 
 store.subscribe(saveState)
