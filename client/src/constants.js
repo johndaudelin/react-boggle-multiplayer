@@ -1,4 +1,4 @@
-export const TILES = [
+export const CUBES = [
   'AAEEGN',
   'ELRTTY',
   'AOOTTW',
