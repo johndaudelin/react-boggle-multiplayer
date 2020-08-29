@@ -91,7 +91,6 @@ exports.startGame = (socket, config) => {
 
       room.board = []
       shuffle(c.CUBES)
-      console.log(c.CUBES)
       for (let i = 0; i < 16; i++) {
         room.board.push(c.CUBES[i].charAt(Math.floor(Math.random() * 6)))
       }
