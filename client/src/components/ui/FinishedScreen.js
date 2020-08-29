@@ -5,26 +5,6 @@ import Button from './Button'
 import '../../stylesheets/FinishedScreen.scss'
 
 export default class FinishedScreen extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.handleEnterPress = this.handleEnterPress.bind(this)
-  }
-
-  componentDidMount () {
-    document.addEventListener('keydown', this.handleEnterPress)
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('keydown', this.handleEnterPress)
-  }
-
-  handleEnterPress (event) {
-    if (event.keyCode === 13) {
-      this.props.startGame()
-    }
-  }
-
   render () {
     return (
       <div className='finishedScreen'>
