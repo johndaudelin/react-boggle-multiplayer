@@ -1,5 +1,6 @@
 const express = require('express')
 const http = require('http')
+const path = require('path')
 const socketIo = require('socket.io')
 const c = require('./constants.js')
 const actions = require('./actions.js')
@@ -7,6 +8,12 @@ const actions = require('./actions.js')
 const port = process.env.PORT || 4001
 
 const app = express()
+
+app.use(express.static(path.join(__dirname, 'client/dist')))
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'client/dist', 'index.html'))
+})
 
 const server = http.createServer(app)
 
