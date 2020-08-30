@@ -2,22 +2,26 @@ import FinishedScreen from '../ui/FinishedScreen'
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
-  const rankedPlayers = [...state.room.players]
-    .map(player => ({
-      name: player.name,
-      scorecard: player.scorecard,
-      totalScore: player.scorecard.reduce(
-        (prevSum, score) => prevSum + score.score,
-        0
-      )
-    }))
-    .sort((a, b) => b.totalScore - a.totalScore)
+  let rankedPlayers = []
+  let winnerNames = []
+  if (state.room) {
+    rankedPlayers = [...state.room.players]
+      .map(player => ({
+        name: player.name,
+        scorecard: player.scorecard,
+        totalScore: player.scorecard.reduce(
+          (prevSum, score) => prevSum + score.score,
+          0
+        )
+      }))
+      .sort((a, b) => b.totalScore - a.totalScore)
 
-  const winningScore = rankedPlayers[0].totalScore
+    const winningScore = rankedPlayers[0].totalScore
 
-  const winnerNames = rankedPlayers
-    .filter(player => player.totalScore === winningScore)
-    .map(player => player.name)
+    winnerNames = rankedPlayers
+      .filter(player => player.totalScore === winningScore)
+      .map(player => player.name)
+  }
 
   return {
     mode: state.mode,
@@ -27,7 +31,7 @@ const mapStateToProps = state => {
       0
     ),
     rankedPlayers,
-    host: state.room.players[0].name === state.userName,
+    host: state.room ? state.room.players[0].name === state.userName : true,
     winnerNames
   }
 }
