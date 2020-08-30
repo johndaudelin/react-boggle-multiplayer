@@ -5,19 +5,36 @@
 }
 
 .scorecard {
-  overflow-y: scroll;
-  width: 200px;
-  height: 23vh;
   border: 1px solid $soft-grey;
-  border-radius: 10px 0px 0px 10px;
-  padding: 15px;
+  border-radius: 10px 10px 0px 10px;
   margin: 15px 15px;
 }
 
-.scoreCardLabel {
-  @extend .horizontallyCentered;
-  color: $text-grey;
-  margin-bottom: 15px;
+.scorecardBody {
+  overflow-y: scroll;
+  width: 200px;
+  height: 23vh;
+  padding: 10px;
+}
+
+.scorecardHeader {
+  @extend .standardText;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $soft-grey;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.goodScorecardHeader {
+  @extend .scorecardHeader;
+  background-color: $dark-green;
+}
+
+.badScorecardHeader {
+  @extend .scorecardHeader;
+  background-color: $soft-error;
 }
 
 .scoreEntry {
@@ -51,35 +68,32 @@
 }
 
 .totalScore {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  border-top: 1px solid $soft-grey;
-  margin-top: 5px;
-  padding-top: 5px;
+  padding: 5px 10px;
   font-weight: bold;
-  color: $text-grey;
 }
 
 @media screen and (max-width: 600px) {
   .scorecard {
-    width: 33.33vw;
-    border-radius: 1.66vw 0px 0px 1.66vw;
-    padding: 2.5vw;
+    border-radius: 1.66vw 1.66vw 0px 1.66vw;
     margin: 2.5vw 2.5vw;
     font-size: 2.66vw;
   }
 
-  .scoreCardLabel {
-    margin-bottom: 2.5vw;
+  .scorecardBody {
+    width: 33.33vw;
+    padding: 1.66vw;
+  }
+
+  .scorecardHeader {
+    padding: 1.66vw;
+    border-radius: 1.66vw 1.66vw 0px 0px;
+  }
+
+  .totalScore {
+    padding: 0.83vw 1.66vw;
   }
 
   .scoreEntry {
     margin: 0.833vw 0px;
-  }
-
-  .totalScore {
-    margin-top: 0.833vw;
-    padding-top: 0.833vw;
   }
 }

@@ -10,7 +10,7 @@ export default class WelcomeScreen extends React.Component {
         <span className='headerText'>Play With Friends</span>
         <EnterRoomSection />
         <span className='separator'></span>
-        <span className='headerText'>Play Solo</span>
+        <span className='headerText'>Play By Yourself</span>
         <div className='singlePlayerButton'>
           <Button
             onClick={this.props.startSinglePlayerGame}

@@ -120,6 +120,12 @@ class GameScreen extends React.Component {
   render () {
     return (
       <div className='gameScreen'>
+        {this.props.mode === 'multi' ? (
+          <span className='roomNotification'>
+            You are competing with {this.props.room.players.length - 1} other
+            player(s)
+          </span>
+        ) : null}
         <Timer />
         <div className='horizontalSection'>
           <div className='leftSide'>

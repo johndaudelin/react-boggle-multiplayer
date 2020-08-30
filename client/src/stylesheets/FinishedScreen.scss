@@ -27,19 +27,8 @@
   width: 8vh;
   height: 8vh;
   border-radius: 38px;
+  border: 2px solid $soft-grey;
   font-size: 3vh;
-}
-
-.goodScoreBubble {
-  @extend .finalScoreBubble;
-  background-color: $soft-green;
-  border: 1px solid $dark-green;
-}
-
-.badScoreBubble {
-  @extend .finalScoreBubble;
-  background-color: $soft-error;
-  border: 1px solid $dark-error;
 }
 
 .playAgainButton {
