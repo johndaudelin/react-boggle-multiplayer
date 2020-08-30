@@ -101,8 +101,11 @@ class GameScreen extends React.Component {
     }
   }
 
-  endGame () {
+  componentWillUnmount () {
     document.removeEventListener('keydown', this.handleKeyPress)
+  }
+
+  endGame () {
     if (this.props.mode === 'single') {
       clearInterval(this.state.timeInterval)
       this.props.decreaseTimer() // set singlePlayer.timer = -1 to recognize end of game in GameScreen component
