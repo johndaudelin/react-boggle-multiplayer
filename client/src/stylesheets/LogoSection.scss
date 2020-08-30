@@ -1,7 +1,12 @@
 @import 'globals';
 
+.logoSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .poweredByText {
-  @extend .horizontallyCentered;
   font-family: 'Open Sans', sans-serif;
   color: $text-grey;
   font-size: 12px;
@@ -12,4 +17,11 @@
   margin-bottom: 15px;
   width: 100px;
   height: 100px;
+}
+
+@media screen and (max-width: 600px) {
+  .logo {
+    width: 16.67vw;
+    height: 16.67vw;
+  }
 }

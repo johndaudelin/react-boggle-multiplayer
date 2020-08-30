@@ -2,6 +2,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap);
 
 .welcomeScreen {
+  margin-bottom: 75px;
 }
 
 .enterRoomSection {
@@ -37,5 +38,4 @@
 
 .singlePlayerButton {
   @extend .horizontallyCentered;
-  margin-bottom: 60px;
 }

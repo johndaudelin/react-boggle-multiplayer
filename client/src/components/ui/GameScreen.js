@@ -144,19 +144,16 @@ class GameScreen extends React.Component {
             <EntryBox />
           </div>
         </div>
-        {/*
         <div className='leaveGameSection'>
           <Button
             onClick={() => {
-              if (this.props.mode === 'single') {
-                this.endGame()
-              }
+              this.endGame()
               this.props.leaveGame()
             }}
-            value='Leave Game'
+            value={this.props.mode === 'single' ? 'Quit Game' : 'Leave Room'}
             type='cancel'
           />
-          </div>*/}
+        </div>
       </div>
     )
   }
