@@ -8,9 +8,9 @@ export default class Button extends Component {
         className={`${
           this.props.disabled
             ? 'disabledButton'
-            : this.props.type == 'cancel'
+            : this.props.type === 'cancel'
             ? 'cancelButton'
-            : this.props.type == 'primary'
+            : this.props.type === 'primary'
             ? 'primaryButton'
             : ''
         }`}

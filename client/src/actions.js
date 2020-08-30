@@ -11,7 +11,7 @@ export const addWord = () => (dispatch, getState) => {
   const word = state.currentWord
     .map(arr => arr[0])
     .map(index =>
-      state.mode == 'single'
+      state.mode === 'single'
         ? state.singlePlayer.board[index]
         : state.room.board[index]
     )
@@ -51,7 +51,7 @@ export const addWord = () => (dispatch, getState) => {
               object.hwi?.hw &&
               !object.hwi.hw.includes('-') &&
               object.hwi.hw.split(' ').length === 1 &&
-              object.hwi.hw[0] == object.hwi.hw[0].toLowerCase()
+              object.hwi.hw[0] === object.hwi.hw[0].toLowerCase()
             ) {
               badWord = false
             }

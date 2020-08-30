@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 const mapStateToProps = state => ({
   currentWord: state.currentWord
     .map(indexes =>
-      state.mode == 'single'
+      state.mode === 'single'
         ? state.singlePlayer.board[indexes[0]]
         : state.room.board[indexes[0]]
     )

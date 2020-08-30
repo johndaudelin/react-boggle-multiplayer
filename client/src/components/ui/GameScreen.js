@@ -87,7 +87,8 @@ export default class GameScreen extends React.Component {
   }
 
   componentDidUpdate () {
-    if (this.props.mode == 'single' && this.props.timer <= 0) {
+    if (this.props.mode === 'single' && this.props.timer <= 0) {
+      // NEED TO DO THIS ON MULTI MODE AS WELL!!
       this.endGame()
     }
   }
@@ -129,7 +130,7 @@ export default class GameScreen extends React.Component {
         <div className='leaveGameSection'>
           <Button
             onClick={() => {
-              if (this.props.mode == 'single') {
+              if (this.props.mode === 'single') {
                 this.endGame()
               }
               this.props.leaveGame()

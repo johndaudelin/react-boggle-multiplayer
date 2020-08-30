@@ -50,10 +50,10 @@ const mapStateToProps = state => {
 
   return {
     mode: state.mode,
-    board: state.mode == 'multi' ? state.room.board : state.singlePlayer.board,
+    board: state.mode === 'multi' ? state.room.board : state.singlePlayer.board,
     currentWord: state.currentWord,
     reachableTiles,
-    timer: state.mode == 'multi' ? state.room.timer : state.singlePlayer.timer
+    timer: state.mode === 'multi' ? state.room.timer : state.singlePlayer.timer
   }
 }
 

@@ -17,7 +17,7 @@ export default class FinishedScreen extends React.Component {
           <FinalScore totalScore={this.props.totalScore} />
         </div>
         <div className='wrapContainer'>
-          {this.props.mode == 'single' ? (
+          {this.props.mode === 'single' ? (
             <Scorecard scorecard={this.props.scorecard} />
           ) : (
             this.props.room.players.map((player, key) => (
