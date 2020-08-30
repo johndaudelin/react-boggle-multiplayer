@@ -5,9 +5,10 @@ import Button from './Button'
 import EntryBox from '../containers/EntryBox'
 import Timer from '../containers/Timer'
 import WordList from '../containers/WordList'
+import SocketContext from '../socket-context'
 import { LETTERS } from '../../constants'
 
-export default class GameScreen extends React.Component {
+class GameScreen extends React.Component {
   constructor (props) {
     super(props)
 
@@ -16,6 +17,8 @@ export default class GameScreen extends React.Component {
     }
 
     this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.addScorecard = this.addScorecard.bind(this)
+    this.endGame = this.endGame.bind(this)
   }
 
   handleKeyPress (event) {
@@ -83,6 +86,11 @@ export default class GameScreen extends React.Component {
         timeInterval: setInterval(this.props.decreaseTimer, 1000)
       })
     }
+    this.props.socket.on('END_GAME', roomData => {
+      this.addScorecard()
+      this.endGame()
+      this.props.updateRoom(roomData)
+    })
     document.addEventListener('keydown', this.handleKeyPress)
   }
 
@@ -94,9 +102,19 @@ export default class GameScreen extends React.Component {
   }
 
   endGame () {
-    clearInterval(this.state.timeInterval)
     document.removeEventListener('keydown', this.handleKeyPress)
-    this.props.decreaseTimer() // set singlePlayer.timer = -1 to recognize end of game in GameScreen component
+    if (this.props.mode === 'single') {
+      clearInterval(this.state.timeInterval)
+      this.props.decreaseTimer() // set singlePlayer.timer = -1 to recognize end of game in GameScreen component
+    }
+  }
+
+  addScorecard () {
+    this.props.socket.emit('ADD_SCORECARD', {
+      roomName: this.props.room.name,
+      userName: this.props.userName,
+      scorecard: this.props.scorecard
+    })
   }
 
   render () {
@@ -142,4 +160,12 @@ export default class GameScreen extends React.Component {
       </div>
     )
   }
+}
+
+export default function (props) {
+  return (
+    <SocketContext.Consumer>
+      {socket => <GameScreen {...props} socket={socket} />}
+    </SocketContext.Consumer>
+  )
 }

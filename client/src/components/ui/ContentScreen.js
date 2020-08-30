@@ -15,16 +15,10 @@ class ContentScreen extends React.Component {
     this.startGame = this.startGame.bind(this)
     this.startSinglePlayerGame = this.startSinglePlayerGame.bind(this)
     this.leaveGame = this.leaveGame.bind(this)
-    this.addScorecard = this.addScorecard.bind(this)
   }
 
   componentDidMount () {
     this.props.socket.on('UPDATE_ROOM_INFO', roomData => {
-      this.props.updateRoom(roomData)
-    })
-    // MOVE THIS TO GAME SCREEN
-    this.props.socket.on('END_GAME', roomData => {
-      this.addScorecard()
       this.props.updateRoom(roomData)
     })
   }
@@ -58,14 +52,6 @@ class ContentScreen extends React.Component {
     } else {
       this.props.changeMode('multi')
     }
-  }
-
-  addScorecard () {
-    this.props.socket.emit('ADD_SCORECARD', {
-      roomName: this.props.room.name,
-      userName: this.props.userName,
-      scorecard: this.props.scorecard
-    })
   }
 
   render () {
