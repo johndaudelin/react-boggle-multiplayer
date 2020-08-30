@@ -1,6 +1,12 @@
 @import 'globals';
 
 .finishedScreen {
+  @extend .centeredColumn;
+}
+
+.waitForHost {
+  @extend .softText;
+  margin: 30px 0px;
 }
 
 .wrapContainer {
@@ -10,13 +16,11 @@
 }
 
 .congratulations {
-  @extend .horizontallyCentered;
   color: $text-grey;
   font-size: 20px;
 }
 
 .finalScoreSection {
-  @extend .horizontallyCentered;
   margin: 2vh 0px 4vh 0px;
   color: $text-grey;
 }
@@ -32,17 +36,20 @@
 }
 
 .playAgainButton {
-  @extend .horizontallyCentered;
   margin: 5vh 0px 2vh 0px;
 }
 
 .leaveRoomButton {
-  @extend .horizontallyCentered;
   margin: 2vh 0px 6vh 0px;
 }
 
 @media screen and (max-width: 600px) {
   .congratulations {
     font-size: 3.33vw;
+  }
+
+  .waitForHost {
+    margin: 5vh 0px;
+    font-size: 2.66vw;
   }
 }

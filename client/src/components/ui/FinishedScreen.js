@@ -20,22 +20,29 @@ export default class FinishedScreen extends React.Component {
           {this.props.mode === 'single' ? (
             <Scorecard scorecard={this.props.scorecard} />
           ) : (
-            this.props.room.players.map((player, key) => (
+            this.props.rankedPlayers.map((player, key) => (
               <Scorecard
                 key={key}
                 name={player.name}
                 scorecard={player.scorecard}
+                winner={this.props.winnerNames.includes(player.name)}
               />
             ))
           )}
         </div>
-        <div className='playAgainButton'>
-          <Button
-            onClick={this.props.startGame}
-            type='primary'
-            value='Play Again'
-          />
-        </div>
+        {this.props.host ? (
+          <div className='playAgainButton'>
+            <Button
+              onClick={this.props.startGame}
+              type='primary'
+              value='Play Again'
+            />
+          </div>
+        ) : (
+          <div className='waitForHost'>
+            <span>Wait for host to start another game...</span>
+          </div>
+        )}
         <div className='leaveRoomButton'>
           <Button
             onClick={this.props.leaveGame}

@@ -8,6 +8,15 @@
   border: 1px solid $soft-grey;
   border-radius: 10px 10px 0px 10px;
   margin: 15px 15px;
+  position: relative;
+}
+
+.prize {
+  position: absolute;
+  top: -30px;
+  left: -25px;
+  width: 55px;
+  height: 100px;
 }
 
 .scorecardBody {
@@ -25,6 +34,11 @@
   align-items: center;
   border-bottom: 1px solid $soft-grey;
   border-radius: 10px 10px 0px 0px;
+}
+
+.scorecardHeaderWinner {
+  @extend .scorecardHeader;
+  padding-left: 40px;
 }
 
 .goodScorecardHeader {
@@ -79,6 +93,13 @@
     font-size: 2.66vw;
   }
 
+  .prize {
+    top: -5vw;
+    left: -4.16vw;
+    width: 9.16vw;
+    height: 16.66vw;
+  }
+
   .scorecardBody {
     width: 33.33vw;
     padding: 1.66vw;
@@ -87,6 +108,10 @@
   .scorecardHeader {
     padding: 1.66vw;
     border-radius: 1.66vw 1.66vw 0px 0px;
+  }
+
+  .scorecardHeaderWinner {
+    padding-left: 6.66vw;
   }
 
   .totalScore {
