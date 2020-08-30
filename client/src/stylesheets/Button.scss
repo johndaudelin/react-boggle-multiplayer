@@ -36,13 +36,17 @@
   color: $dark-error;
 }
 
-.primaryButton:hover,
-.cancelButton:hover {
+.altButton {
+  @extend .button;
+  background-color: $soft-blue;
+  color: $dark-blue;
+}
+
+.button:not(.disabledButton):hover {
   cursor: pointer;
 }
 
-.primaryButton::before,
-.cancelButton::before {
+.button:not(.disabledButton)::before {
   content: ' ';
   position: absolute;
   top: 0;
@@ -56,8 +60,7 @@
   background-color: rgba(0, 0, 0, 0);
 }
 
-.primaryButton:hover::before,
-.cancelButton:hover::before {
+.button:not(.disabledButton):hover::before {
   opacity: 1;
 }
 

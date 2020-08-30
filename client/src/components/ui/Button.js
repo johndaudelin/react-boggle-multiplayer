@@ -12,7 +12,7 @@ export default class Button extends Component {
             ? 'cancelButton'
             : this.props.type === 'primary'
             ? 'primaryButton'
-            : ''
+            : 'altButton'
         }`}
         onClick={this.props.disabled ? null : this.props.onClick}
       >

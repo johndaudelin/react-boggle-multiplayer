@@ -12,7 +12,7 @@ export default class WelcomeScreen extends React.Component {
         <div className='singlePlayerButton'>
           <Button
             onClick={this.props.startSinglePlayerGame}
-            type='primary'
+            type='alt'
             value='Single Player'
           />
         </div>
