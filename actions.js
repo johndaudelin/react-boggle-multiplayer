@@ -115,7 +115,7 @@ exports.addScorecard = (socket, config) => {
   if (roomExists(config.roomName)) {
     let room = getRoom(config.roomName)
     let player = room.players.filter(
-      player => player.name == config.userName
+      player => player.name === config.userName
     )[0]
     player.scorecard = config.scorecard
     app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)

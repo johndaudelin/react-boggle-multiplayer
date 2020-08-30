@@ -22,6 +22,7 @@ class ContentScreen extends React.Component {
     this.props.socket.on('UPDATE_ROOM_INFO', roomData => {
       this.props.updateRoom(roomData)
     })
+    // MOVE THIS TO GAME SCREEN
     this.props.socket.on('END_GAME', roomData => {
       this.addScorecard()
       this.props.updateRoom(roomData)
@@ -30,7 +31,6 @@ class ContentScreen extends React.Component {
 
   componentWillUnmount () {
     this.leaveGame()
-    this.props.socket.disconnect()
   }
 
   startGame () {
@@ -41,7 +41,7 @@ class ContentScreen extends React.Component {
   }
 
   startSinglePlayerGame () {
-    if (this.props.mode == 'multi') {
+    if (this.props.mode === 'multi') {
       this.props.changeMode('single')
     } else {
       this.props.initializeTimer()
@@ -49,7 +49,7 @@ class ContentScreen extends React.Component {
   }
 
   leaveGame () {
-    if (this.props.mode == 'multi') {
+    if (this.props.mode === 'multi') {
       this.props.socket.emit('LEAVE_ROOM', {
         roomName: this.props.room.name,
         userName: this.props.userName
@@ -73,7 +73,7 @@ class ContentScreen extends React.Component {
       <div className='app'>
         <div>
           <Header />
-          {this.props.mode == 'multi' ? (
+          {this.props.mode === 'multi' ? (
             !this.props.room ? (
               <WelcomeScreen
                 startSinglePlayerGame={this.startSinglePlayerGame}
