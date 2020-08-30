@@ -78,6 +78,10 @@ exports.startGame = (socket, config) => {
       console.log(
         `User ${config.userName} tried to start an already begun game in ${config.roomName}`
       )
+    } else if (!(room.players[0].name === config.userName)) {
+      console.log(
+        `Non-host ${config.userName} tried starting game in ${config.roomName}`
+      )
     } else {
       console.log(`User ${config.userName} starting game in ${config.roomName}`)
 
