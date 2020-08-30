@@ -12,7 +12,7 @@
 .congratulations {
   @extend .horizontallyCentered;
   color: $text-grey;
-  font-size: 2vh;
+  font-size: 20px;
 }
 
 .finalScoreSection {
@@ -52,28 +52,8 @@
   margin: 2vh 0px 6vh 0px;
 }
 
-@media screen and (max-height: 1000px) {
+@media screen and (max-width: 600px) {
   .congratulations {
-    font-size: 20px;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .congratulations {
-    font-size: 5vw;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  .congratulations {
-    font-size: 15px;
-  }
-}
-
-@media screen and (max-height: 600px) {
-  .finalScoreBubble {
-    width: 48px;
-    height: 48px;
-    font-size: 18px;
+    font-size: 3.33vw;
   }
 }

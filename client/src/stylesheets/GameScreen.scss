@@ -1,4 +1,5 @@
 @import 'globals';
+@import 'EntryBox';
 @import url(https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Open+Sans:wght@300;400;800&display=swap);
 
 .gameScreen {
@@ -31,20 +32,6 @@
   width: 100%;
   color: $text-grey;
   font-style: italic;
-}
-
-.entryBox {
-  width: 200px;
-  border: 1px solid $soft-grey;
-  border-radius: 10px;
-  height: 30px;
-  line-height: 30px;
-  padding: 5px 15px;
-  margin: 20px 20px 0px 20px;
-}
-
-.entryBoxPlaceholder {
-  color: $soft-grey;
 }
 
 .board {
@@ -149,6 +136,7 @@
     border-radius: 1.66vw;
     font-size: 7vw;
     line-height: 7vw;
+    box-shadow: 0 0 1.66vw 0 rgba(0, 0, 0, 0.3);
   }
 
   .wordList {
@@ -168,16 +156,6 @@
     margin: 0.83vw 0px;
   }
 
-  .entryBox {
-    width: 33.33vw;
-    border-radius: 1.33vw;
-    height: 5vw;
-    line-height: 5vw;
-    font-size: 3vw;
-    padding: 0.83vw 2.5vw;
-    margin: 3.33vw 3.33vw 0px 3.33vw;
-  }
-
   .timerText {
     margin-left: 1.66vw;
     line-height: 5vw;
@@ -186,5 +164,26 @@
   .timer {
     margin: 6.66vw 0px;
     font-size: 5vw;
+  }
+
+  .gameScreen {
+    margin-bottom: 12.5vw;
+  }
+
+  .board {
+    margin: 0px 3.33vw 3.33vw 3.33vw;
+  }
+
+  .clickableTile::before {
+    border-radius: 1.66vw;
+    box-shadow: 0 1.66vw 8.33vw 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .boardButtons {
+    margin: 0px 4vw;
+  }
+
+  .leaveGameSection {
+    margin-top: 12.5vw;
   }
 }

@@ -1,39 +1,56 @@
 @import 'globals';
+@import 'EntryBox';
 @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap);
 
 .welcomeScreen {
-  margin-bottom: 75px;
+  @extend .centeredColumn;
+  margin-bottom: 16vh;
 }
 
 .enterRoomSection {
   @extend .centeredColumn;
-  margin-top: 50px;
+  margin-bottom: 60px;
 }
 
-.enterRoomSection input {
-  position: relative;
-  margin-bottom: 30px;
-  border: none;
-  outline: none;
-  border-radius: 4px;
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.3);
-  height: 40px;
-  text-align: center;
-  background-color: transparent;
-  font-size: 17px;
-  color: $text-grey;
-  font-family: 'Open Sans', sans-serif;
+.enterRoomButton {
+  margin-top: 40px;
 }
 
 .separator {
-  @extend .horizontallyCentered;
-  margin: 50px 0px;
-  font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
-  color: $soft-grey;
-  font-style: italic;
+  margin-bottom: 30px;
+  width: 100%;
+  border-top: 1px solid $soft-grey;
+}
+
+.headerText {
+  @extend .softText;
+  margin: 30px 0px;
+  font-size: 30px;
 }
 
 .singlePlayerButton {
-  @extend .horizontallyCentered;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 400px) {
+  .headerText {
+    font-size: 7.5vw;
+    margin: 7.5vw 0px;
+  }
+
+  .enterRoomSection {
+    margin-bottom: 15vw;
+  }
+
+  .enterRoomButton {
+    margin-top: 10vw;
+  }
+
+  .separator {
+    margin-bottom: 7.5vw;
+  }
+
+  .singlePlayerButton {
+    margin-top: 1.25vw;
+  }
 }

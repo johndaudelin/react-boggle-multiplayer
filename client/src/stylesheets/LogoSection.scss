@@ -19,3 +19,10 @@
     height: 16.67vw;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .poweredByText {
+    font-size: 3vw;
+    margin-bottom: 1.25vw;
+  }
+}

@@ -60,3 +60,26 @@
   font-weight: bold;
   color: $text-grey;
 }
+
+@media screen and (max-width: 600px) {
+  .scorecard {
+    width: 33.33vw;
+    border-radius: 1.66vw 0px 0px 1.66vw;
+    padding: 2.5vw;
+    margin: 2.5vw 2.5vw;
+    font-size: 2.66vw;
+  }
+
+  .scoreCardLabel {
+    margin-bottom: 2.5vw;
+  }
+
+  .scoreEntry {
+    margin: 0.833vw 0px;
+  }
+
+  .totalScore {
+    margin-top: 0.833vw;
+    padding-top: 0.833vw;
+  }
+}

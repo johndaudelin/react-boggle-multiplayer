@@ -5,11 +5,12 @@ export default class EntryBox extends Component {
   render () {
     return (
       <div className='entryBox'>
-        {this.props.currentWord.length > 0 ? (
-          <span>{this.props.currentWord}</span>
-        ) : (
-          <span className='entryBoxPlaceholder'>Type Word</span>
-        )}
+        <input
+          type='text'
+          placeholder='Type Word'
+          value={this.props.currentWord}
+          onChange={() => null}
+        />
       </div>
     )
   }

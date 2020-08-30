@@ -52,13 +52,9 @@
 }
 
 @media screen and (max-width: 400px) {
-  .waitingForHost,
-  .hostMessage {
-    font-size: 4vw;
-  }
-
   .roomLabel {
     font-size: 5vw;
+    margin-top: 12.5vw;
   }
 
   .icon {
@@ -74,15 +70,27 @@
     margin: 7.5vw;
   }
 
-  .playersDisplay,
-  .startGameButton,
-  .waitingForHost,
-  .roomLabel {
+  .playersDisplay {
     margin-top: 12.5vw;
   }
 
-  .waitingScreen,
+  .waitingScreen {
+    margin-bottom: 18.75vw;
+  }
+
+  .startGameButton {
+    margin-top: 12.5vw;
+    margin-bottom: 5vw;
+  }
+
   .waitingForHost {
     margin-bottom: 18.75vw;
+    margin-top: 12.5vw;
+    font-size: 4vw;
+  }
+
+  .hostMessage {
+    margin-bottom: 12.5vw;
+    font-size: 4vw;
   }
 }
