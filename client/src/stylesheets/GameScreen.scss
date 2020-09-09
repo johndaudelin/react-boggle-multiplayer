@@ -42,8 +42,8 @@
 
 .board {
   margin: 0px 20px 20px 20px;
-  // prevents zooming on double tap (for mobile screens)
-  touch-action: manipulation;
+  // prevents scrolling while swiping tiles with finger
+  touch-action: pinch-zoom;
 }
 
 .horizontalSection {
