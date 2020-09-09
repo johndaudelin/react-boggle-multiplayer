@@ -25,8 +25,6 @@ export default class Tile extends Component {
         className={`${this.props.clickable ? 'clickableTile' : 'disabledTile'}
           ${this.props.alreadyClicked ? 'clickedTile' : ''}
         `}
-        onMouseEnter={() => this.setState({ hovered: true })}
-        onMouseLeave={() => this.setState({ hovered: false })}
         onClick={
           this.props.lastOneClicked
             ? this.props.removeFromCurrentWord

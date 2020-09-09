@@ -42,7 +42,7 @@
   color: $dark-blue;
 }
 
-.button:not(.disabledButton):hover {
+body.hasHover .button:not(.disabledButton):hover {
   cursor: pointer;
 }
 
@@ -60,7 +60,7 @@
   background-color: rgba(0, 0, 0, 0);
 }
 
-.button:not(.disabledButton):hover::before {
+body.hasHover .button:not(.disabledButton):hover::before {
   opacity: 1;
 }
 
