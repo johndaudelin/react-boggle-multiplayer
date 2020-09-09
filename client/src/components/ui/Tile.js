@@ -16,7 +16,7 @@ export default class Tile extends Component {
   }
 
   componentDidMount () {
-    document.addEventListener('touchmove', this.handlePointerMove, false)
+    document.addEventListener('touchmove', this.handlePointerMove)
     document.addEventListener('mousedown', this.handleMouseDown)
     document.addEventListener('mouseup', this.handleMouseUp)
   }
@@ -40,7 +40,6 @@ export default class Tile extends Component {
   }
 
   handlePointerMove (event) {
-    event.preventDefault()
     const touch = event.changedTouches[0]
     if (touch) {
       const pointerElement = document.elementFromPoint(

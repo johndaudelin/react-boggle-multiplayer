@@ -43,7 +43,7 @@
 .board {
   margin: 0px 20px 20px 20px;
   // prevents zooming on double tap (for mobile screens)
-  touch-action: none;
+  touch-action: pinch-zoom;
 }
 
 .horizontalSection {
