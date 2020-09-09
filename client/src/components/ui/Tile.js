@@ -17,6 +17,11 @@ export default class Tile extends Component {
 
   componentDidMount () {
     document.addEventListener('touchmove', this.handlePointerMove)
+    // Disables double tap to zoom functionality
+    document.addEventListener('touchend', event => {
+      event.preventDefault()
+      event.target.click()
+    })
     document.addEventListener('mousedown', this.handleMouseDown)
     document.addEventListener('mouseup', this.handleMouseUp)
   }
