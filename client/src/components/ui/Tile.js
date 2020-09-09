@@ -40,6 +40,7 @@ export default class Tile extends Component {
   }
 
   handlePointerMove (event) {
+    event.preventDefault()
     const touch = event.changedTouches[0]
     if (touch) {
       const pointerElement = document.elementFromPoint(
