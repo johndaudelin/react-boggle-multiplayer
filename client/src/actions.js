@@ -40,7 +40,7 @@ export const addWord = () => (dispatch, getState) => {
       .then(obj => {
         // If word is not in the dictionary (or is an "abbreviation" or "acronym"), make the score for this word negative
         let badWord = true
-        if (obj[0].meta) {
+        if (obj.length > 0 && obj[0].meta) {
           obj.forEach(object => {
             if (
               object.fl &&
@@ -61,8 +61,6 @@ export const addWord = () => (dispatch, getState) => {
         if (badWord) {
           score = 0 - score
         }
-
-        console.log(obj)
 
         dispatch({
           type: Actions.ADD_WORD,
