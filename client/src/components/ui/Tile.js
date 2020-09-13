@@ -6,22 +6,21 @@ export default class Tile extends Component {
     super(props)
 
     this.state = {
-      mouseDown: false
+      mouseDown: false,
+      clicked: true
     }
 
     this.handleTileAdd = this.handleTileAdd.bind(this)
     this.handlePointerMove = this.handlePointerMove.bind(this)
     this.handleMouseUp = this.handleMouseUp.bind(this)
     this.handleMouseDown = this.handleMouseDown.bind(this)
+    this.handleTouch = this.handleTouch.bind(this)
   }
 
   componentDidMount () {
     document.addEventListener('touchmove', this.handlePointerMove)
     // Disables double tap to zoom functionality
-    document.addEventListener('touchend', event => {
-      event.preventDefault()
-      event.target.click()
-    })
+    document.addEventListener('touchend', this.handleTouch)
     document.addEventListener('mousedown', this.handleMouseDown)
     document.addEventListener('mouseup', this.handleMouseUp)
   }
@@ -30,6 +29,18 @@ export default class Tile extends Component {
     document.removeEventListener('touchmove', this.handlePointerMove)
     document.removeEventListener('mousedown', this.handleMouseDown)
     document.removeEventListener('mouseup', this.handleMouseUp)
+    document.removeEventListener('touchend', this.handleTouch)
+  }
+
+  handleTouch (event) {
+    if (!this.state.clicked) {
+      event.preventDefault()
+      event.target.click()
+      this.setState({
+        clicked: true
+      })
+      console.log(event.target)
+    }
   }
 
   handleMouseDown (event) {
