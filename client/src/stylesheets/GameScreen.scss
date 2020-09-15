@@ -42,6 +42,8 @@
 
 .board {
   margin: 0px 20px 20px 20px;
+  // prevents scrolling while swiping tiles with finger
+  touch-action: pinch-zoom;
 }
 
 .horizontalSection {
@@ -97,15 +99,15 @@
   background-color: $soft-green;
 }
 
-.clickableTile:hover:not(.clickedTile) {
+body.hasHover .clickableTile:hover:not(.clickedTile) {
   background-color: $soft-grey;
 }
 
-.clickableTile:hover {
+body.hasHover .clickableTile:hover {
   cursor: pointer;
 }
 
-.clickableTile:hover::before {
+body.hasHover .clickableTile:hover::before {
   opacity: 1;
 }
 
