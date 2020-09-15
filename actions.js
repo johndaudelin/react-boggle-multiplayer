@@ -1,5 +1,5 @@
 const app = require('./app.js')
-const { roomExists, getRoom } = require('./helpers.js')
+const { roomExists, getRoom, shuffle } = require('./helpers.js')
 const c = require('./constants.js')
 
 exports.enterRoom = (socket, config) => {
@@ -78,6 +78,10 @@ exports.startGame = (socket, config) => {
       console.log(
         `User ${config.userName} tried to start an already begun game in ${config.roomName}`
       )
+    } else if (!(room.players[0].name === config.userName)) {
+      console.log(
+        `Non-host ${config.userName} tried starting game in ${config.roomName}`
+      )
     } else {
       console.log(`User ${config.userName} starting game in ${config.roomName}`)
 
@@ -90,8 +94,9 @@ exports.startGame = (socket, config) => {
       }))
 
       room.board = []
+      shuffle(c.CUBES)
       for (let i = 0; i < 16; i++) {
-        room.board.push(c.TILES[i].charAt(Math.floor(Math.random() * 6)))
+        room.board.push(c.CUBES[i].charAt(Math.floor(Math.random() * 6)))
       }
 
       app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
@@ -114,7 +119,7 @@ exports.addScorecard = (socket, config) => {
   if (roomExists(config.roomName)) {
     let room = getRoom(config.roomName)
     let player = room.players.filter(
-      player => player.name == config.userName
+      player => player.name === config.userName
     )[0]
     player.scorecard = config.scorecard
     app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)

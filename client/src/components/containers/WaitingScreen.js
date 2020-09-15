@@ -2,6 +2,7 @@ import WaitingScreen from '../ui/WaitingScreen'
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => ({
+  userName: state.userName,
   room: state.room
 })
 

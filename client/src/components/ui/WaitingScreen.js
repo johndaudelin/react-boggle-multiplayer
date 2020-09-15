@@ -27,19 +27,30 @@ export default class WaitingScreen extends React.Component {
   render () {
     return (
       <div className='waitingScreen'>
-        <span className='roomLabel'>{this.props.room.name}</span>
+        <span className='roomLabel'>
+          Lobby for <b>{this.props.room.name}</b>
+        </span>
         <div className='playersDisplay'>
           {this.props.room.players.map((player, index) => (
             <PlayerIcon key={index} name={player.name} />
           ))}
         </div>
-        <div className='startGameButton'>
-          <Button
-            onClick={this.props.startGame}
-            type='primary'
-            value='Start Game'
-          />
-        </div>
+        {this.props.room.players[0].name === this.props.userName ? (
+          <div className='startGameButton'>
+            <span className='hostMessage'>
+              Send your friends the room name!
+            </span>
+            <Button
+              onClick={this.props.startGame}
+              type='primary'
+              value='Start Game'
+            />
+          </div>
+        ) : (
+          <span className='waitingForHost'>
+            Waiting for host to start game...
+          </span>
+        )}
         <div className='leaveGameButton'>
           <Button
             onClick={this.props.leaveGame}

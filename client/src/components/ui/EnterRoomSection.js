@@ -36,19 +36,25 @@ class EnterRoomSection extends React.Component {
   render () {
     return (
       <div className='enterRoomSection'>
-        <input
-          type='text'
-          placeholder='Enter your name'
-          value={this.props.userName}
-          onChange={this.handleNameInput}
-        />
-        <input
-          type='text'
-          placeholder='Enter room name'
-          value={this.state.roomName}
-          onChange={this.handleRoomInput}
-        />
-        <Button onClick={this.joinRoom} type='primary' value='Enter Room' />
+        <div className='entryBox'>
+          <input
+            type='text'
+            placeholder='Enter your name'
+            value={this.props.userName}
+            onChange={this.handleNameInput}
+          />
+        </div>
+        <div className='entryBox'>
+          <input
+            type='text'
+            placeholder='Enter room name'
+            value={this.state.roomName}
+            onChange={this.handleRoomInput}
+          />
+        </div>
+        <div className='enterRoomButton'>
+          <Button onClick={this.joinRoom} type='alt' value='Enter Room' />
+        </div>
       </div>
     )
   }

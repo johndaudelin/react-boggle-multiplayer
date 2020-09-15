@@ -1,4 +1,4 @@
-export const TILES = [
+export const CUBES = [
   'AAEEGN',
   'ELRTTY',
   'AOOTTW',
@@ -21,7 +21,10 @@ export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 export const API_KEY = '7d9f1980-6810-488c-8baf-0e61bd2dd99b'
 
-export const SERVER_ENDPOINT = 'http://127.0.0.1:4001'
+const env = process.env.NODE_ENV || 'development'
+const DEV_SERVER = 'http://127.0.0.1:4001'
+const PROD_SERVER = 'http://35.153.50.80:4001'
+export const SERVER_ENDPOINT = env === 'development' ? DEV_SERVER : PROD_SERVER
 
 export const Actions = {
   INITIALIZE_SCORECARD: 'INITIALIZE_SCORECARD',

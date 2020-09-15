@@ -5,26 +5,6 @@ import Button from './Button'
 import '../../stylesheets/FinishedScreen.scss'
 
 export default class FinishedScreen extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.handleEnterPress = this.handleEnterPress.bind(this)
-  }
-
-  componentDidMount () {
-    document.addEventListener('keydown', this.handleEnterPress)
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('keydown', this.handleEnterPress)
-  }
-
-  handleEnterPress (event) {
-    if (event.keyCode === 13) {
-      this.props.startGame()
-    }
-  }
-
   render () {
     return (
       <div className='finishedScreen'>
@@ -37,30 +17,37 @@ export default class FinishedScreen extends React.Component {
           <FinalScore totalScore={this.props.totalScore} />
         </div>
         <div className='wrapContainer'>
-          {this.props.mode == 'single' ? (
+          {this.props.mode === 'single' ? (
             <Scorecard scorecard={this.props.scorecard} />
           ) : (
-            this.props.room.players.map((player, key) => (
+            this.props.rankedPlayers.map((player, key) => (
               <Scorecard
                 key={key}
                 name={player.name}
                 scorecard={player.scorecard}
+                winner={this.props.winnerNames.includes(player.name)}
               />
             ))
           )}
         </div>
-        <div className='playAgainButton'>
-          <Button
-            onClick={this.props.startGame}
-            type='primary'
-            value='Play Again'
-          />
-        </div>
+        {this.props.host ? (
+          <div className='playAgainButton'>
+            <Button
+              onClick={this.props.startGame}
+              type='primary'
+              value='Play Again'
+            />
+          </div>
+        ) : (
+          <div className='waitForHost'>
+            <span>Wait for host to start another game...</span>
+          </div>
+        )}
         <div className='leaveRoomButton'>
           <Button
             onClick={this.props.leaveGame}
-            type='cancel'
-            value='Leave Room'
+            type='alt'
+            value={this.props.mode === 'multi' ? 'Leave Room' : 'Home Screen'}
           />
         </div>
       </div>

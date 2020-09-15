@@ -15,22 +15,16 @@ class ContentScreen extends React.Component {
     this.startGame = this.startGame.bind(this)
     this.startSinglePlayerGame = this.startSinglePlayerGame.bind(this)
     this.leaveGame = this.leaveGame.bind(this)
-    this.addScorecard = this.addScorecard.bind(this)
   }
 
   componentDidMount () {
     this.props.socket.on('UPDATE_ROOM_INFO', roomData => {
       this.props.updateRoom(roomData)
     })
-    this.props.socket.on('END_GAME', roomData => {
-      this.addScorecard()
-      this.props.updateRoom(roomData)
-    })
   }
 
   componentWillUnmount () {
     this.leaveGame()
-    this.props.socket.disconnect()
   }
 
   startGame () {
@@ -41,7 +35,7 @@ class ContentScreen extends React.Component {
   }
 
   startSinglePlayerGame () {
-    if (this.props.mode == 'multi') {
+    if (this.props.mode === 'multi') {
       this.props.changeMode('single')
     } else {
       this.props.initializeTimer()
@@ -49,7 +43,7 @@ class ContentScreen extends React.Component {
   }
 
   leaveGame () {
-    if (this.props.mode == 'multi') {
+    if (this.props.mode === 'multi') {
       this.props.socket.emit('LEAVE_ROOM', {
         roomName: this.props.room.name,
         userName: this.props.userName
@@ -60,20 +54,12 @@ class ContentScreen extends React.Component {
     }
   }
 
-  addScorecard () {
-    this.props.socket.emit('ADD_SCORECARD', {
-      roomName: this.props.room.name,
-      userName: this.props.userName,
-      scorecard: this.props.scorecard
-    })
-  }
-
   render () {
     return (
       <div className='app'>
         <div>
           <Header />
-          {this.props.mode == 'multi' ? (
+          {this.props.mode === 'multi' ? (
             !this.props.room ? (
               <WelcomeScreen
                 startSinglePlayerGame={this.startSinglePlayerGame}

@@ -6,7 +6,16 @@ $dark-grey: #a6a6a6;
 $text-grey: #43464b;
 $dark-error: #a63232;
 $soft-error: #ff9494;
+$soft-blue: #84caf5;
+$dark-blue: #083d5e;
+
 @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap);
+
+.centeredColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .horizontallyCentered {
   display: flex;
@@ -17,4 +26,9 @@ $soft-error: #ff9494;
 .standardText {
   font-family: 'Open Sans', sans-serif;
   color: $text-grey;
+}
+
+.softText {
+  font-family: 'Open Sans', sans-serif;
+  color: $dark-grey;
 }

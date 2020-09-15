@@ -6,8 +6,7 @@ const mapStateToProps = state => ({
   userName: state.userName,
   room: state.room,
   singlePlayer: state.singlePlayer,
-  mode: state.mode,
-  scorecard: state.scorecard
+  mode: state.mode
 })
 
 const mapDispatchToProps = dispatch => ({

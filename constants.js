@@ -10,7 +10,7 @@ exports.SOCKET_EVENTS = {
   END_GAME: 'END_GAME'
 }
 
-exports.TILES = [
+exports.CUBES = [
   'AAEEGN',
   'ELRTTY',
   'AOOTTW',

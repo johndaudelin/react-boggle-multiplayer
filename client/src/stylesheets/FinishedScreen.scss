@@ -1,6 +1,12 @@
 @import 'globals';
 
 .finishedScreen {
+  @extend .centeredColumn;
+}
+
+.waitForHost {
+  @extend .softText;
+  margin: 30px 0px;
 }
 
 .wrapContainer {
@@ -10,13 +16,11 @@
 }
 
 .congratulations {
-  @extend .horizontallyCentered;
   color: $text-grey;
-  font-size: 2vh;
+  font-size: 20px;
 }
 
 .finalScoreSection {
-  @extend .horizontallyCentered;
   margin: 2vh 0px 4vh 0px;
   color: $text-grey;
 }
@@ -27,53 +31,25 @@
   width: 8vh;
   height: 8vh;
   border-radius: 38px;
+  border: 2px solid $soft-grey;
   font-size: 3vh;
 }
 
-.goodScoreBubble {
-  @extend .finalScoreBubble;
-  background-color: $soft-green;
-  border: 1px solid $dark-green;
-}
-
-.badScoreBubble {
-  @extend .finalScoreBubble;
-  background-color: $soft-error;
-  border: 1px solid $dark-error;
-}
-
 .playAgainButton {
-  @extend .horizontallyCentered;
   margin: 5vh 0px 2vh 0px;
 }
 
 .leaveRoomButton {
-  @extend .horizontallyCentered;
   margin: 2vh 0px 6vh 0px;
 }
 
-@media screen and (max-height: 1000px) {
+@media screen and (max-width: 600px) {
   .congratulations {
-    font-size: 20px;
+    font-size: 3.33vw;
   }
-}
 
-@media screen and (max-width: 400px) {
-  .congratulations {
-    font-size: 5vw;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  .congratulations {
-    font-size: 15px;
-  }
-}
-
-@media screen and (max-height: 600px) {
-  .finalScoreBubble {
-    width: 48px;
-    height: 48px;
-    font-size: 18px;
+  .waitForHost {
+    margin: 5vh 0px;
+    font-size: 2.66vw;
   }
 }

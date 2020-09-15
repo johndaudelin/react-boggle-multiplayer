@@ -5,7 +5,7 @@ import logo from '../../img/merriam-webster.png' // Tell webpack this JS file us
 export default class LogoSection extends React.Component {
   render () {
     return (
-      <div className='logoSection'>
+      <div className='centeredColumn'>
         <span className='poweredByText'>Powered By</span>
         <a href='https://dictionaryapi.com/' target='_blank'>
           <img src={logo} alt='Logo' className='logo' />

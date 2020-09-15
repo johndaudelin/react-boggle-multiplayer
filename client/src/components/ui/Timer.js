@@ -17,7 +17,7 @@ class Timer extends Component {
 
   render () {
     const timer =
-      this.props.mode == 'multi'
+      this.props.mode === 'multi'
         ? this.props.roomTimer
         : this.props.singlePlayerTimer
     const minutes = Math.floor(timer / 60)

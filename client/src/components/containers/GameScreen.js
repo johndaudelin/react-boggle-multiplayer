@@ -8,7 +8,8 @@ import {
   addWord,
   resetCurrentWord,
   removeFromCurrentWord,
-  changeCurrentWord
+  changeCurrentWord,
+  updateRoom
 } from '../../actions'
 
 const mapStateToProps = state => {
@@ -50,14 +51,20 @@ const mapStateToProps = state => {
 
   return {
     mode: state.mode,
-    board: state.mode == 'multi' ? state.room.board : state.singlePlayer.board,
+    room: state.room,
+    userName: state.userName,
+    scorecard: state.scorecard,
+    board: state.mode === 'multi' ? state.room.board : state.singlePlayer.board,
     currentWord: state.currentWord,
     reachableTiles,
-    timer: state.mode == 'multi' ? state.room.timer : state.singlePlayer.timer
+    timer: state.mode === 'multi' ? state.room.timer : state.singlePlayer.timer
   }
 }
 
 const mapDispatchToProps = dispatch => ({
+  updateRoom (roomData) {
+    dispatch(updateRoom(roomData))
+  },
   decreaseTimer () {
     dispatch(decreaseTimer())
   },

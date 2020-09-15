@@ -1,9 +1,16 @@
 @import 'globals';
+@import 'EntryBox';
 @import url(https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Open+Sans:wght@300;400;800&display=swap);
 
 .gameScreen {
+  @extend .centeredColumn;
   margin-top: -2vh;
   margin-bottom: 75px;
+}
+
+.roomNotification {
+  @extend .standardText;
+  margin: 30px 0px 15px 0px;
 }
 
 .rightSide {
@@ -33,22 +40,10 @@
   font-style: italic;
 }
 
-.entryBox {
-  width: 200px;
-  border: 1px solid $soft-grey;
-  border-radius: 10px;
-  height: 30px;
-  line-height: 30px;
-  padding: 5px 15px;
-  margin: 20px 20px 0px 20px;
-}
-
-.entryBoxPlaceholder {
-  color: $soft-grey;
-}
-
 .board {
   margin: 0px 20px 20px 20px;
+  // prevents scrolling while swiping tiles with finger
+  touch-action: pinch-zoom;
 }
 
 .horizontalSection {
@@ -104,22 +99,20 @@
   background-color: $soft-green;
 }
 
-.clickableTile:hover:not(.clickedTile) {
+body.hasHover .clickableTile:hover:not(.clickedTile) {
   background-color: $soft-grey;
 }
 
-.clickableTile:hover {
+body.hasHover .clickableTile:hover {
   cursor: pointer;
 }
 
-.clickableTile:hover::before {
+body.hasHover .clickableTile:hover::before {
   opacity: 1;
 }
 
 .timer {
-  @extend .horizontallyCentered;
   margin: 40px 0px;
-  width: 100%;
   font-size: 30px;
   color: $soft-grey;
 }
@@ -137,9 +130,7 @@
 }
 
 .leaveGameSection {
-  @extend .horizontallyCentered;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 75px;
 }
 
 @media screen and (max-width: 600px) {
@@ -150,6 +141,12 @@
     border-radius: 1.66vw;
     font-size: 7vw;
     line-height: 7vw;
+    box-shadow: 0 0 1.66vw 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .roomNotification {
+    margin: 5vw 0px 2.5vw 0px;
+    font-size: 2.66vw;
   }
 
   .wordList {
@@ -169,16 +166,6 @@
     margin: 0.83vw 0px;
   }
 
-  .entryBox {
-    width: 33.33vw;
-    border-radius: 1.33vw;
-    height: 5vw;
-    line-height: 5vw;
-    font-size: 3vw;
-    padding: 0.83vw 2.5vw;
-    margin: 3.33vw 3.33vw 0px 3.33vw;
-  }
-
   .timerText {
     margin-left: 1.66vw;
     line-height: 5vw;
@@ -187,5 +174,26 @@
   .timer {
     margin: 6.66vw 0px;
     font-size: 5vw;
+  }
+
+  .gameScreen {
+    margin-bottom: 12.5vw;
+  }
+
+  .board {
+    margin: 0px 3.33vw 3.33vw 3.33vw;
+  }
+
+  .clickableTile::before {
+    border-radius: 1.66vw;
+    box-shadow: 0 1.66vw 8.33vw 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .boardButtons {
+    margin: 0px 4vw;
+  }
+
+  .leaveGameSection {
+    margin-top: 12.5vw;
   }
 }

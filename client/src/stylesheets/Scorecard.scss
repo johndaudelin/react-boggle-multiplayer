@@ -5,19 +5,50 @@
 }
 
 .scorecard {
+  border: 1px solid $soft-grey;
+  border-radius: 10px 10px 0px 10px;
+  margin: 15px 15px;
+  position: relative;
+}
+
+.prize {
+  position: absolute;
+  top: -30px;
+  left: -25px;
+  width: 55px;
+  height: 100px;
+}
+
+.scorecardBody {
   overflow-y: scroll;
   width: 200px;
   height: 23vh;
-  border: 1px solid $soft-grey;
-  border-radius: 10px 0px 0px 10px;
-  padding: 15px;
-  margin: 15px 15px;
+  padding: 10px;
 }
 
-.scoreCardLabel {
-  @extend .horizontallyCentered;
-  color: $text-grey;
-  margin-bottom: 15px;
+.scorecardHeader {
+  @extend .standardText;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $soft-grey;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.scorecardHeaderWinner {
+  @extend .scorecardHeader;
+  padding-left: 40px;
+}
+
+.goodScorecardHeader {
+  @extend .scorecardHeader;
+  background-color: $dark-green;
+}
+
+.badScorecardHeader {
+  @extend .scorecardHeader;
+  background-color: $soft-error;
 }
 
 .scoreEntry {
@@ -51,12 +82,43 @@
 }
 
 .totalScore {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  border-top: 1px solid $soft-grey;
-  margin-top: 5px;
-  padding-top: 5px;
+  padding: 5px 10px;
   font-weight: bold;
-  color: $text-grey;
+}
+
+@media screen and (max-width: 600px) {
+  .scorecard {
+    border-radius: 1.66vw 1.66vw 0px 1.66vw;
+    margin: 2.5vw 2.5vw;
+    font-size: 2.66vw;
+  }
+
+  .prize {
+    top: -5vw;
+    left: -4.16vw;
+    width: 9.16vw;
+    height: 16.66vw;
+  }
+
+  .scorecardBody {
+    width: 33.33vw;
+    padding: 1.66vw;
+  }
+
+  .scorecardHeader {
+    padding: 1.66vw;
+    border-radius: 1.66vw 1.66vw 0px 0px;
+  }
+
+  .scorecardHeaderWinner {
+    padding-left: 6.66vw;
+  }
+
+  .totalScore {
+    padding: 0.83vw 1.66vw;
+  }
+
+  .scoreEntry {
+    margin: 0.833vw 0px;
+  }
 }

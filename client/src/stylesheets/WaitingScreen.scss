@@ -1,9 +1,8 @@
 @import 'globals';
 
 .waitingScreen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @extend .centeredColumn;
+  margin-bottom: 75px;
 }
 
 .roomLabel {
@@ -14,15 +13,14 @@
 
 .playersDisplay {
   @extend .horizontallyCentered;
+  flex-wrap: wrap;
   margin-top: 50px;
 }
 
 .player {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @extend .centeredColumn;
   color: $soft-grey;
-  margin: 0px 30px;
+  margin: 30px;
 }
 
 .icon {
@@ -36,11 +34,63 @@
 }
 
 .startGameButton {
-  @extend .horizontallyCentered;
-  margin-top: 100px;
+  @extend .centeredColumn;
+  margin-top: 50px;
   margin-bottom: 20px;
 }
 
-.leaveGameButton {
-  margin-bottom: 60px;
+.hostMessage {
+  @extend .softText;
+  margin-bottom: 50px;
+}
+
+.waitingForHost {
+  @extend .horizontallyCentered;
+  @extend .softText;
+  margin-top: 50px;
+  margin-bottom: 75px;
+}
+
+@media screen and (max-width: 400px) {
+  .roomLabel {
+    font-size: 5vw;
+    margin-top: 12.5vw;
+  }
+
+  .icon {
+    font-size: 7.5vw;
+  }
+
+  .playerName {
+    font-size: 5vw;
+    margin-top: 2.5vw;
+  }
+
+  .player {
+    margin: 7.5vw;
+  }
+
+  .playersDisplay {
+    margin-top: 12.5vw;
+  }
+
+  .waitingScreen {
+    margin-bottom: 18.75vw;
+  }
+
+  .startGameButton {
+    margin-top: 12.5vw;
+    margin-bottom: 5vw;
+  }
+
+  .waitingForHost {
+    margin-bottom: 18.75vw;
+    margin-top: 12.5vw;
+    font-size: 4vw;
+  }
+
+  .hostMessage {
+    margin-bottom: 12.5vw;
+    font-size: 4vw;
+  }
 }
