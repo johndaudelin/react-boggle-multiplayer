@@ -69,7 +69,8 @@ class GameScreen extends React.Component {
       }
     } else if (event.keyCode === 8) {
       this.props.removeFromCurrentWord()
-    } else if (event.keyCode === 13) {
+    } else if (event.keyCode === 13 || event.keyCode === 32) {
+      event.preventDefault()
       if (this.props.currentWord.length > 2) {
         this.props.addWord()
       }
