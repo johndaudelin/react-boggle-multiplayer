@@ -1,4 +1,4 @@
-# react-boggle-multiplayer
+# Multi-Player Boggle Web App
 
 ## Description
 
