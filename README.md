@@ -2,7 +2,7 @@
 
 ## Description
 
-An multiplayer Boggle game created in React. The game is not permanently hosted online yet. However, follow the sections below to setup and run the app locally.
+A multiplayer Boggle game created in React. The game is not permanently hosted online yet. However, follow the sections below to setup and run the app locally.
 
 ## Local Setup
 
@@ -18,12 +18,12 @@ To run the app, first run the following command to begin the backend server:
     cd react-boggle-multiplayer
     npm start
 
-Then, run the following commands to begin the client server:
+Then, in a separate terminal window, run the following commands to begin the client server:
 
     cd client
     npm start
 
-You should see a browser window automatically pop up and the Boggle web app displayed on `http://localhost:8080`. Enjoy!
+You should see a browser window automatically open and the Boggle web app displayed on `http://localhost:8080`. Enjoy!
 
 ## Code
 
