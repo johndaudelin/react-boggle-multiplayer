@@ -2,7 +2,11 @@
 
 ## Description
 
-A multiplayer Boggle game created in React. The game is not permanently hosted online yet. However, follow the sections below to setup and run the app locally.
+A multiplayer Boggle game created in React.
+
+## Play
+
+The game is hosted [here](http://ec2-35-153-50-80.compute-1.amazonaws.com:4001) You can also follow the sections below to setup and run the app locally.
 
 ## Local Setup
 
