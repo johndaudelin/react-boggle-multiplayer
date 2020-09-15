@@ -46,7 +46,7 @@ export default class FinishedScreen extends React.Component {
         <div className='leaveRoomButton'>
           <Button
             onClick={this.props.leaveGame}
-            type='cancel'
+            type='alt'
             value={this.props.mode === 'multi' ? 'Leave Room' : 'Home Screen'}
           />
         </div>
