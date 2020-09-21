@@ -1,28 +1,37 @@
-# react-boggle-multiplayer
+# Multi-Player Boggle Web App
 
 ## Description
 
-An online, multiplayer Boggle game created in React
+A multiplayer Boggle game created in React.
 
-## Setup
+## Play
 
-Clone this repository and run the following commands in the terminal:
+The game is hosted [here](http://ec2-35-153-50-80.compute-1.amazonaws.com:4001) You can also follow the sections below to setup and run the app locally.
 
-    cd react-boggle-multiplayer/api
+## Local Setup
+
+Clone this repository and run the following commands:
+
+    cd react-boggle-multiplayer
     npm install
+    cd client
+    npm install
+
+To run the app, first run the following command to begin the backend server:
+
+    cd react-boggle-multiplayer
     npm start
 
-Open a new terminal tab and run the following commands:
+Then, in a separate terminal window, run the following commands to begin the client server:
 
-    cd react-boggle-multiplayer/client
-    npm install
+    cd client
     npm start
 
-Navigate to `http://localhost:3000` and the application will be running!
+You should see a browser window automatically open and the Boggle web app displayed on `http://localhost:8080`. Enjoy!
 
 ## Code
 
-The client application code here was taken initially from my previous project, [react-boggle](https://github.com/Cowboy46/react-boggle), which is a single player version of the game.
+The client application code was taken initially from my previous project, [react-boggle](https://github.com/Cowboy46/react-boggle), which is a completely single-player version of the game.
 
 I followed the steps on [this blog post](https://www.valentinog.com/blog/socket-react/#socketio-react-and-nodejs-hands-on) for getting started with Express and Socket.io.
 
