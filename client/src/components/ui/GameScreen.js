@@ -23,7 +23,10 @@ class GameScreen extends React.Component {
 
   handleKeyPress (event) {
     if (event.keyCode >= 65 && event.keyCode <= 90) {
-      const char = LETTERS[event.keyCode - 65]
+      let char = LETTERS[event.keyCode - 65]
+      if (char === 'Q') {
+        char = 'Qu'
+      }
       const indexesOfLetter = this.props.board
         .map((letter, index) => (letter === char ? index : -1))
         .filter(index => index !== -1)
