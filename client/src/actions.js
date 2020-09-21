@@ -108,7 +108,11 @@ export const initializeBoard = () => {
   let tiles = []
   shuffle(CUBES)
   for (let i = 0; i < 16; i++) {
-    tiles.push(CUBES[i].charAt(Math.floor(Math.random() * 6)))
+    let char = CUBES[i].charAt(Math.floor(Math.random() * 6))
+    if (char === 'Q') {
+      char = 'Qu'
+    }
+    tiles.push(char)
   }
 
   return {
