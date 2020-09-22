@@ -71,6 +71,7 @@ class GameScreen extends React.Component {
         this.props.changeCurrentWord(word)
       }
     } else if (event.keyCode === 8) {
+      event.preventDefualt()
       this.props.removeFromCurrentWord()
     } else if (event.keyCode === 13 || event.keyCode === 32) {
       event.preventDefault()
