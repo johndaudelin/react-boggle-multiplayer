@@ -59,7 +59,7 @@ export const singlePlayer = (
     case Actions.INITIALIZE_TIMER:
       return {
         board: [...state.board],
-        timer: 90
+        timer: 5
       }
     case Actions.INITIALIZE_BOARD:
       return {
@@ -80,7 +80,17 @@ export const mode = (state = 'multi', action) => {
   }
 }
 
+export const theme = (state = 'classic', action) => {
+  switch (action.type) {
+    case Actions.CHANGE_THEME:
+      return action.payload
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
+  theme,
   mode,
   singlePlayer,
   scorecard,

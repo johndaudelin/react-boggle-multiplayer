@@ -22,9 +22,18 @@
 }
 
 .headerText {
-  @extend .softText;
   margin: 2vh 0px;
   font-size: 3vh;
+}
+
+.headerTextStandard {
+  @extend .headerText;
+  @extend .standardText;
+}
+
+.headerTextDarkTheme {
+  @extend .headerText;
+  @extend .darkThemeText;
 }
 
 .singlePlayerButton {

@@ -14,11 +14,19 @@ export default class LogoSection extends React.Component {
   render () {
     return (
       <div className='centeredColumn'>
-        <span className='poweredByText'>Powered By</span>
+        <span
+          className={
+            this.props.theme === 'classic' || this.props.theme === 'beach'
+              ? 'poweredByTextStandard'
+              : 'poweredByTextDarkTheme'
+          }
+        >
+          Powered By
+        </span>
         <a href='https://dictionaryapi.com/' target='_blank'>
           <img src={logo} alt='Logo' className='logo' />
         </a>
-        <div class='powr-hit-counter' id='094d5e9f_1600189066'></div>
+        <div className='powr-hit-counter' id='094d5e9f_1600189066'></div>
       </div>
     )
   }

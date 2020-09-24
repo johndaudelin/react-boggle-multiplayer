@@ -5,7 +5,16 @@
   padding-top: 4vh;
   padding-bottom: 4vh;
   font-size: 8vh;
-  color: $text-grey;
+}
+
+.headerStandard {
+  @extend .header;
+  @extend .standardText;
+}
+
+.headerDarkTheme {
+  @extend .header;
+  @extend .darkThemeText;
 }
 
 @media screen and (max-height: 500px) {

@@ -6,9 +6,18 @@
 }
 
 .roomLabel {
-  @extend .standardText;
   margin-top: 50px;
   font-size: 20px;
+}
+
+.roomLabelStandard {
+  @extend .roomLabel;
+  @extend .standardText;
+}
+
+.roomLabelDarkTheme {
+  @extend .roomLabel;
+  @extend .darkThemeText;
 }
 
 .playersDisplay {
@@ -19,11 +28,20 @@
 
 .player {
   @extend .centeredColumn;
-  color: $soft-grey;
   margin: 30px;
 }
 
-.icon {
+.playerStandard {
+  @extend .player;
+  color: $text-grey;
+}
+
+.playerDarkTheme {
+  @extend .player;
+  color: $soft-grey;
+}
+
+.playerIcon {
   font-size: 30px;
 }
 
@@ -40,15 +58,33 @@
 }
 
 .hostMessage {
-  @extend .softText;
   margin-bottom: 50px;
+}
+
+.hostMessageStandard {
+  @extend .hostMessage;
+  @extend .standardText;
+}
+
+.hostMessageDarkTheme {
+  @extend .hostMessage;
+  @extend .softText;
 }
 
 .waitingForHost {
   @extend .horizontallyCentered;
-  @extend .softText;
   margin-top: 50px;
   margin-bottom: 75px;
+}
+
+.waitingForHostStandard {
+  @extend .waitingForHost;
+  @extend .standardText;
+}
+
+.waitingForHostDarkTheme {
+  @extend .waitingForHost;
+  @extend .softText;
 }
 
 @media screen and (max-width: 400px) {

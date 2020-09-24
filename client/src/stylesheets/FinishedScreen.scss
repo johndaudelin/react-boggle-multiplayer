@@ -5,19 +5,37 @@
 }
 
 .waitForHost {
-  @extend .softText;
   margin: 30px 0px;
+}
+
+.waitForHostStandard {
+  @extend .waitForHost;
+  @extend .standardText;
+}
+
+.waitForHostDarkTheme {
+  @extend .waitForHost;
+  @extend .darkThemeText;
 }
 
 .wrapContainer {
   @extend .horizontallyCentered;
-  width: 100vw;
+  width: 95vw;
   flex-wrap: wrap;
 }
 
 .congratulations {
-  color: $text-grey;
   font-size: 20px;
+}
+
+.congratulationsStandard {
+  @extend .congratulations;
+  @extend .standardText;
+}
+
+.congratulationsDarkTheme {
+  @extend .congratulations;
+  @extend .darkThemeText;
 }
 
 .finalScoreSection {
@@ -33,6 +51,7 @@
   border-radius: 38px;
   border: 2px solid $soft-grey;
   font-size: 3vh;
+  background-color: white;
 }
 
 .playAgainButton {

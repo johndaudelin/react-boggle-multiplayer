@@ -8,7 +8,13 @@ export default class FinishedScreen extends React.Component {
   render () {
     return (
       <div className='finishedScreen'>
-        <div className='congratulations'>
+        <div
+          className={
+            this.props.theme === 'classic' || this.props.theme === 'beach'
+              ? 'congratulationsStandard'
+              : 'congratulationsDarkTheme'
+          }
+        >
           {this.props.totalScore > 0
             ? 'Congratulations! Your score is'
             : 'Oops! Your score is'}
@@ -39,7 +45,13 @@ export default class FinishedScreen extends React.Component {
             />
           </div>
         ) : (
-          <div className='waitForHost'>
+          <div
+            className={
+              this.props.theme === 'classic' || this.props.theme === 'beach'
+                ? 'waitForHostStandard'
+                : 'waitForHostDarkTheme'
+            }
+          >
             <span>Wait for host to start another game...</span>
           </div>
         )}

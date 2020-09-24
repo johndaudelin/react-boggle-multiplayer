@@ -1,0 +1,79 @@
+@import 'globals';
+
+.selectThemeContainer {
+  @extend .centeredColumn;
+  position: absolute;
+  top: 1vw;
+  left: 1vw;
+}
+
+.themeIcons {
+  @extend .horizontallyCentered;
+  width: 110px;
+  flex-wrap: wrap;
+}
+
+.themeLabel {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.themeLabelStandard {
+  @extend .themeLabel;
+  @extend .standardText;
+}
+
+.themeLabelDarkTheme {
+  @extend .themeLabel;
+  @extend .darkThemeText;
+}
+
+.themeIcon {
+  border-radius: 10px;
+  border: 2px solid $dark-grey;
+  background-size: 45px 45px;
+  width: 45px;
+  height: 45px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.classic {
+  @extend .themeIcon;
+  background-color: white;
+}
+
+.space {
+  @extend .themeIcon;
+  background-image: url('../img/space_icon.jpg');
+}
+
+.beach {
+  @extend .themeIcon;
+  background-image: url('../img/beach_icon.jpg');
+}
+
+.chalk {
+  @extend .themeIcon;
+  background-image: url('../img/chalk_icon.jpg');
+}
+
+@media screen and (max-width: 600px) {
+  .themeIcons {
+    width: 18.33vw;
+  }
+
+  .themeLabel {
+    font-size: 3.33vw;
+    margin-bottom: 1.66vw;
+  }
+
+  .themeIcon {
+    border-radius: 1.66vw;
+    border: 0.33vw solid $dark-grey;
+    background-size: 7.5vw 7.5vw;
+    width: 7.5vw;
+    height: 7.5vw;
+    margin: 0.5vw;
+  }
+}

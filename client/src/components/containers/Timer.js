@@ -5,7 +5,8 @@ import { updateRoom } from '../../actions'
 const mapStateToProps = state => ({
   roomTimer: state.room?.timer,
   singlePlayerTimer: state.singlePlayer.timer,
-  mode: state.mode
+  mode: state.mode,
+  theme: state.theme
 })
 
 const mapDispatchToProps = dispatch => ({

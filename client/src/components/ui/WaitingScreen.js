@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../stylesheets/WaitingScreen.scss'
 import Button from './Button'
-import PlayerIcon from './PlayerIcon'
+import PlayerIcon from '../containers/PlayerIcon'
 
 export default class WaitingScreen extends React.Component {
   constructor (props) {
@@ -27,7 +27,13 @@ export default class WaitingScreen extends React.Component {
   render () {
     return (
       <div className='waitingScreen'>
-        <span className='roomLabel'>
+        <span
+          className={
+            this.props.theme === 'classic' || this.props.theme === 'beach'
+              ? 'roomLabelStandard'
+              : 'roomLabelDarkTheme'
+          }
+        >
           Lobby for <b>{this.props.room.name}</b>
         </span>
         <div className='playersDisplay'>
@@ -37,7 +43,13 @@ export default class WaitingScreen extends React.Component {
         </div>
         {this.props.room.players[0].name === this.props.userName ? (
           <div className='startGameButton'>
-            <span className='hostMessage'>
+            <span
+              className={
+                this.props.theme === 'classic' || this.props.theme === 'beach'
+                  ? 'hostMessageStandard'
+                  : 'hostMessageDarkTheme'
+              }
+            >
               Send your friends the room name!
             </span>
             <Button
@@ -47,7 +59,13 @@ export default class WaitingScreen extends React.Component {
             />
           </div>
         ) : (
-          <span className='waitingForHost'>
+          <span
+            className={
+              this.props.theme === 'classic' || this.props.theme === 'beach'
+                ? 'waitingForHostStandard'
+                : 'waitingForHostDarkTheme'
+            }
+          >
             Waiting for host to start game...
           </span>
         )}

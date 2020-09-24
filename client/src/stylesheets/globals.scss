@@ -1,9 +1,10 @@
-$soft-green: #d5e8d4;
+$soft-green: #abd1a9;
 $dark-green: #82b366;
 $text-green: #354f27;
 $soft-grey: #cdcdcd;
 $dark-grey: #a6a6a6;
 $text-grey: #43464b;
+$text-white: #f0f0f0;
 $dark-error: #a63232;
 $soft-error: #ff9494;
 $soft-blue: #84caf5;
@@ -23,12 +24,21 @@ $dark-blue: #083d5e;
   justify-content: center;
 }
 
-.standardText {
+.text {
   font-family: 'Open Sans', sans-serif;
+}
+
+.standardText {
+  @extend .text;
   color: $text-grey;
 }
 
+.darkThemeText {
+  @extend .text;
+  color: $text-white;
+}
+
 .softText {
-  font-family: 'Open Sans', sans-serif;
+  @extend .text;
   color: $dark-grey;
 }

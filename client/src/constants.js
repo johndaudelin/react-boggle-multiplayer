@@ -17,6 +17,8 @@ export const CUBES = [
   'DEILRX'
 ]
 
+export const themes = ['classic', 'space', 'beach', 'chalk']
+
 export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 export const API_KEY = '7d9f1980-6810-488c-8baf-0e61bd2dd99b'
@@ -37,10 +39,12 @@ export const Actions = {
   RESET_CURRENT_WORD: 'RESET_CURRENT_WORD',
   CHANGE_USERNAME: 'CHANGE_USERNAME',
   UPDATE_ROOM: 'UPDATE_ROOM',
-  CHANGE_MODE: 'CHANGE_MODE'
+  CHANGE_MODE: 'CHANGE_MODE',
+  CHANGE_THEME: 'CHANGE_THEME'
 }
 
 export const defaultState = {
+  theme: 'classic',
   userName: '',
   mode: 'multi',
   scorecard: [],

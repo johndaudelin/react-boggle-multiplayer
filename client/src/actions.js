@@ -132,6 +132,11 @@ export const changeMode = mode => ({
   payload: mode
 })
 
+export const changeTheme = theme => ({
+  type: Actions.CHANGE_THEME,
+  payload: theme
+})
+
 // Helper function used to shuffle boggle cubes
 // Sourced from https://javascript.info/task/shuffle
 const shuffle = array => {

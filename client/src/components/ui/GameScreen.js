@@ -125,7 +125,13 @@ class GameScreen extends React.Component {
     return (
       <div className='gameScreen'>
         {this.props.mode === 'multi' ? (
-          <span className='roomNotification'>
+          <span
+            className={
+              this.props.theme === 'classic' || this.props.theme === 'beach'
+                ? 'roomNotificationStandard'
+                : 'roomNotificationDarkTheme'
+            }
+          >
             You are competing with {this.props.room.players.length - 1} other
             player(s)
           </span>

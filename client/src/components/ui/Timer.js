@@ -23,7 +23,13 @@ class Timer extends Component {
     const minutes = Math.floor(timer / 60)
     const seconds = timer % 60
     return (
-      <div className='timer'>
+      <div
+        className={
+          this.props.theme === 'classic' || this.props.theme === 'beach'
+            ? 'timerStandard'
+            : 'timerDarkTheme'
+        }
+      >
         <FontAwesomeIcon icon={faHourglassHalf} />
         <span className={'timerText'}>
           {minutes}:{seconds.toString().padStart(2, '0')}

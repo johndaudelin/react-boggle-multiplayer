@@ -24,6 +24,7 @@ const mapStateToProps = state => {
   }
 
   return {
+    theme: state.theme,
     mode: state.mode,
     scorecard: state.scorecard,
     totalScore: state.scorecard.reduce(

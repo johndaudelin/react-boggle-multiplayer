@@ -4,11 +4,32 @@
 
 .app {
   @extend .centeredColumn;
-  position: absolute;
-  bottom: 0;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
   justify-content: space-between;
   font-family: 'Open Sans', sans-serif;
+}
+
+.classicApp {
+  @extend .app;
+  background-color: white;
+}
+
+.spaceApp {
+  @extend .app;
+  background-image: url('../img/space_bg.jpg');
+}
+
+.beachApp {
+  @extend .app;
+  background-image: url('../img/beach_bg.jpg');
+}
+
+.chalkApp {
+  @extend .app;
+  background-image: url('../img/chalk_bg.jpg');
 }

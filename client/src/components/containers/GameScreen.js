@@ -51,6 +51,7 @@ const mapStateToProps = state => {
 
   return {
     mode: state.mode,
+    theme: state.theme,
     room: state.room,
     userName: state.userName,
     scorecard: state.scorecard,

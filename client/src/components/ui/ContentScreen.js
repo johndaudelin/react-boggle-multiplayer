@@ -1,7 +1,8 @@
 import React from 'react'
-import Header from './Header'
-import LogoSection from './LogoSection'
-import WelcomeScreen from './WelcomeScreen'
+import SelectTheme from '../containers/SelectTheme'
+import Header from '../containers/Header'
+import LogoSection from '../containers/LogoSection'
+import WelcomeScreen from '../containers/WelcomeScreen'
 import WaitingScreen from '../containers/WaitingScreen'
 import GameScreen from '../containers/GameScreen'
 import FinishedScreen from '../containers/FinishedScreen'
@@ -56,7 +57,8 @@ class ContentScreen extends React.Component {
 
   render () {
     return (
-      <div className='app'>
+      <div className={`${this.props.theme}App`}>
+        <SelectTheme />
         <div>
           <Header />
           {this.props.mode === 'multi' ? (
