@@ -23,7 +23,10 @@ class GameScreen extends React.Component {
 
   handleKeyPress (event) {
     if (event.keyCode >= 65 && event.keyCode <= 90) {
-      const char = LETTERS[event.keyCode - 65]
+      let char = LETTERS[event.keyCode - 65]
+      if (char === 'Q') {
+        char = 'Qu'
+      }
       const indexesOfLetter = this.props.board
         .map((letter, index) => (letter === char ? index : -1))
         .filter(index => index !== -1)
@@ -68,6 +71,7 @@ class GameScreen extends React.Component {
         this.props.changeCurrentWord(word)
       }
     } else if (event.keyCode === 8) {
+      event.preventDefault()
       this.props.removeFromCurrentWord()
     } else if (event.keyCode === 13 || event.keyCode === 32) {
       event.preventDefault()

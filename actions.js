@@ -96,7 +96,11 @@ exports.startGame = (socket, config) => {
       room.board = []
       shuffle(c.CUBES)
       for (let i = 0; i < 16; i++) {
-        room.board.push(c.CUBES[i].charAt(Math.floor(Math.random() * 6)))
+        let char = c.CUBES[i].charAt(Math.floor(Math.random() * 6))
+        if (char === 'Q') {
+          char = 'Qu'
+        }
+        room.board.push(char)
       }
 
       app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
