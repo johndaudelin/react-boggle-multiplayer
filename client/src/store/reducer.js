@@ -59,7 +59,7 @@ export const singlePlayer = (
     case Actions.INITIALIZE_TIMER:
       return {
         board: [...state.board],
-        timer: 5
+        timer: 90
       }
     case Actions.INITIALIZE_BOARD:
       return {
