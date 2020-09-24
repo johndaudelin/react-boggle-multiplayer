@@ -20,7 +20,8 @@
 
 .wrapContainer {
   @extend .horizontallyCentered;
-  width: 100vw;
+  width: 90vw;
+  margin: 30px 25px;
   flex-wrap: wrap;
 }
 
@@ -63,6 +64,10 @@
 }
 
 @media screen and (max-width: 600px) {
+  .wrapContainer {
+    margin: 5vw 4.16vw;
+  }
+
   .congratulations {
     font-size: 3.33vw;
   }
