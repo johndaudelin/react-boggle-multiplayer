@@ -29,8 +29,8 @@
 }
 
 .themeIcon {
-  border-radius: 10px;
-  border: 2px solid $dark-grey;
+  border-radius: 25px;
+  border: 2px solid $text-grey;
   background-size: 45px 45px;
   width: 45px;
   height: 45px;
@@ -40,7 +40,7 @@
 
 .classic {
   @extend .themeIcon;
-  background-color: white;
+  background-image: url('../img/classic_icon.jpg');
 }
 
 .space {
@@ -69,7 +69,7 @@
   }
 
   .themeIcon {
-    border-radius: 1.66vw;
+    border-radius: 4vw;
     border: 0.33vw solid $dark-grey;
     background-size: 7.5vw 7.5vw;
     width: 7.5vw;
