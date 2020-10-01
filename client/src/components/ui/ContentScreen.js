@@ -1,5 +1,6 @@
 import React from 'react'
 import SelectTheme from '../containers/SelectTheme'
+import ErrorBar from '../containers/ErrorBar'
 import Header from '../containers/Header'
 import LogoSection from '../containers/LogoSection'
 import WelcomeScreen from '../containers/WelcomeScreen'
@@ -21,6 +22,10 @@ class ContentScreen extends React.Component {
   componentDidMount () {
     this.props.socket.on('UPDATE_ROOM_INFO', roomData => {
       this.props.updateRoom(roomData)
+    })
+
+    this.props.socket.on('SEND_ERROR', error => {
+      this.props.changeError(error)
     })
   }
 
@@ -52,37 +57,40 @@ class ContentScreen extends React.Component {
   render () {
     return (
       <div className={`${this.props.theme}App`}>
-        <SelectTheme />
-        <div>
-          <Header />
-          {this.props.mode === 'multi' ? (
-            !this.props.room ? (
-              <WelcomeScreen
-                startSinglePlayerGame={this.startSinglePlayerGame}
-              />
-            ) : this.props.room.waitingForPlayers ? (
-              <WaitingScreen
-                startGame={this.startGame}
-                leaveGame={this.leaveGame}
-              />
-            ) : this.props.room.activeGame ? (
+        <ErrorBar />
+        <div className='normalContent'>
+          <SelectTheme />
+          <div>
+            <Header />
+            {this.props.mode === 'multi' ? (
+              !this.props.room ? (
+                <WelcomeScreen
+                  startSinglePlayerGame={this.startSinglePlayerGame}
+                />
+              ) : this.props.room.waitingForPlayers ? (
+                <WaitingScreen
+                  startGame={this.startGame}
+                  leaveGame={this.leaveGame}
+                />
+              ) : this.props.room.activeGame ? (
+                <GameScreen leaveGame={this.leaveGame} />
+              ) : (
+                <FinishedScreen
+                  startGame={this.startGame}
+                  leaveGame={this.leaveGame}
+                />
+              )
+            ) : this.props.singlePlayer.timer > -1 ? (
               <GameScreen leaveGame={this.leaveGame} />
             ) : (
               <FinishedScreen
-                startGame={this.startGame}
+                startGame={this.startSinglePlayerGame}
                 leaveGame={this.leaveGame}
               />
-            )
-          ) : this.props.singlePlayer.timer > -1 ? (
-            <GameScreen leaveGame={this.leaveGame} />
-          ) : (
-            <FinishedScreen
-              startGame={this.startSinglePlayerGame}
-              leaveGame={this.leaveGame}
-            />
-          )}
+            )}
+          </div>
+          <LogoSection />
         </div>
-        <LogoSection />
       </div>
     )
   }

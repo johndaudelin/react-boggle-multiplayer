@@ -1,0 +1,45 @@
+@import 'globals';
+
+.errorBar {
+  @extend .horizontallyCentered;
+  background-color: $soft-error;
+  padding: 10px 10px;
+  width: 100%;
+}
+
+.errorText {
+  @extend .text;
+  color: $dark-error;
+  font-size: 16px;
+  text-align: center;
+}
+
+.closeError {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  color: $text-grey;
+  width: 16px;
+  height: 16px;
+}
+
+.closeError:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .errorBar {
+    padding: 1.67vw 1.67vw;
+  }
+
+  .errorText {
+    font-size: 2.67vw;
+  }
+
+  .closeError {
+    top: 2.167vw;
+    right: 2.167vw;
+    width: 2.67vw;
+    height: 2.67vw;
+  }
+}

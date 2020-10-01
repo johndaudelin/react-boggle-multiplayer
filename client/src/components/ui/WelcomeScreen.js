@@ -4,6 +4,11 @@ import Button from './Button'
 import EnterRoomSection from '../containers/EnterRoomSection'
 
 export default class WelcomeScreen extends React.Component {
+  componentDidMount () {
+    // Clear any displayed errors when this screen first loads
+    this.props.changeError('')
+  }
+
   render () {
     return (
       <div className='welcomeScreen'>

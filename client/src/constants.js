@@ -40,10 +40,12 @@ export const Actions = {
   CHANGE_USERNAME: 'CHANGE_USERNAME',
   UPDATE_ROOM: 'UPDATE_ROOM',
   CHANGE_MODE: 'CHANGE_MODE',
-  CHANGE_THEME: 'CHANGE_THEME'
+  CHANGE_THEME: 'CHANGE_THEME',
+  CHANGE_ERROR: 'CHANGE_ERROR'
 }
 
 export const defaultState = {
+  error: '',
   theme: 'classic',
   userName: '',
   mode: 'multi',
@@ -58,6 +60,7 @@ export const defaultState = {
 
 // For reference only. Not used in game code.
 export const sampleState = {
+  error: 'User with name John already exists in room Room1',
   userName: 'John',
   mode: 'multi',
   scorecard: [

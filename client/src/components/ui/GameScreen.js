@@ -82,6 +82,9 @@ class GameScreen extends React.Component {
   }
 
   componentDidMount () {
+    // Clear any displayed errors when this screen first loads
+    this.props.changeError('')
+
     this.props.initializeScorecard()
     this.props.resetCurrentWord()
     if (this.props.mode === 'single') {

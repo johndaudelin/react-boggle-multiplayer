@@ -141,6 +141,11 @@ export const changeTheme = theme => ({
   payload: theme
 })
 
+export const changeError = error => ({
+  type: Actions.CHANGE_ERROR,
+  payload: error
+})
+
 // Helper function used to shuffle boggle cubes
 // Sourced from https://javascript.info/task/shuffle
 const shuffle = array => {

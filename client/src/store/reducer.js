@@ -89,7 +89,17 @@ export const theme = (state = 'classic', action) => {
   }
 }
 
+export const error = (state = '', action) => {
+  switch (action.type) {
+    case Actions.CHANGE_ERROR:
+      return action.payload
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
+  error,
   theme,
   mode,
   singlePlayer,

@@ -1,6 +1,11 @@
 import ContentScreen from '../ui/ContentScreen'
 import { connect } from 'react-redux'
-import { updateRoom, changeMode, initializeTimer } from '../../actions'
+import {
+  updateRoom,
+  changeMode,
+  initializeTimer,
+  changeError
+} from '../../actions'
 
 const mapStateToProps = state => ({
   userName: state.userName,
@@ -11,6 +16,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  changeError (error) {
+    dispatch(changeError(error))
+  },
   updateRoom (roomData) {
     dispatch(updateRoom(roomData))
   },

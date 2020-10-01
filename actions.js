@@ -3,12 +3,20 @@ const { roomExists, getRoom, shuffle } = require('./helpers.js')
 const c = require('./constants.js')
 
 exports.enterRoom = (socket, config) => {
-  if (roomExists(config.roomName)) {
+  if (config.roomName === '') {
+    const errMsg = 'Must specify a room name.'
+    console.log(errMsg)
+    socket.emit(c.SOCKET_EVENTS.SEND_ERROR, errMsg)
+  } else if (config.userName === '') {
+    const errMsg = 'Must specify a user name.'
+    console.log(errMsg)
+    socket.emit(c.SOCKET_EVENTS.SEND_ERROR, errMsg)
+  } else if (roomExists(config.roomName)) {
     const room = getRoom(config.roomName)
     if (room.players.some(player => player.name === config.userName)) {
-      console.log(
-        `User ${config.userName} tried joining ${config.roomName} twice.`
-      )
+      const errMsg = `User with name ${config.userName} already in room ${config.roomName}`
+      console.log(errMsg)
+      socket.emit(c.SOCKET_EVENTS.SEND_ERROR, errMsg)
     } else {
       console.log(`User ${config.userName} joining ${config.roomName}`)
 
@@ -52,6 +60,7 @@ exports.leaveRoom = (socket, config) => {
     console.log(
       `User ${config.userName} tried leaving non-existant room ${config.roomName}`
     )
+    socket.emit(c.SOCKET_EVENTS.SEND_ERROR, c.GENERIC_ERROR)
   } else {
     let room = getRoom(config.roomName)
 
@@ -84,10 +93,12 @@ exports.startGame = (socket, config) => {
       console.log(
         `User ${config.userName} tried to start an already begun game in ${config.roomName}`
       )
+      socket.emit(c.SOCKET_EVENTS.SEND_ERROR, c.GENERIC_ERROR)
     } else if (!(room.players[0].name === config.userName)) {
       console.log(
         `Non-host ${config.userName} tried starting game in ${config.roomName}`
       )
+      socket.emit(c.SOCKET_EVENTS.SEND_ERROR, c.GENERIC_ERROR)
     } else {
       console.log(`User ${config.userName} starting game in ${config.roomName}`)
 
@@ -138,6 +149,7 @@ exports.addScorecard = (socket, config, scorecard) => {
       console.log(
         `Error finding scorecard for ${config.userName} in ${config.roomName}`
       )
+      socket.emit(c.SOCKET_EVENTS.SEND_ERROR, c.GENERIC_ERROR)
     }
   }
 }

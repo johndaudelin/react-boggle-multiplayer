@@ -1,10 +1,12 @@
-import WelcomeScreen from '../ui/WelcomeScreen'
+import ErrorBar from '../ui/ErrorBar'
 import { connect } from 'react-redux'
 import { changeError } from '../../actions'
 
-const mapStateToProps = state => ({
-  theme: state.theme
-})
+const mapStateToProps = state => {
+  return {
+    error: state.error
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   changeError (error) {
@@ -12,4 +14,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorBar)

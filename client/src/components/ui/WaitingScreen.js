@@ -11,6 +11,9 @@ export default class WaitingScreen extends React.Component {
   }
 
   componentDidMount () {
+    // Clear any displayed errors when this screen first loads
+    this.props.changeError('')
+
     document.addEventListener('keydown', this.handleEnterPress)
   }
 

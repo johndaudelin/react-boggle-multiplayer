@@ -7,8 +7,11 @@ exports.SOCKET_EVENTS = {
   // server --> client
   UPDATE_ROOM_INFO: 'UPDATE_ROOM_INFO',
   TIMER_UPDATE: 'TIMER_UPDATE',
-  END_GAME: 'END_GAME'
+  END_GAME: 'END_GAME',
+  SEND_ERROR: 'SEND_ERROR'
 }
+
+exports.GENERIC_ERROR = 'An unexpected error occurred. Try refreshing the page.'
 
 exports.CUBES = [
   'AAEEGN',

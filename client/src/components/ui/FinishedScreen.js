@@ -5,6 +5,11 @@ import Button from './Button'
 import '../../stylesheets/FinishedScreen.scss'
 
 export default class FinishedScreen extends React.Component {
+  componentDidMount () {
+    // Clear any displayed errors when this screen first loads
+    this.props.changeError('')
+  }
+
   render () {
     return (
       <div className='finishedScreen'>

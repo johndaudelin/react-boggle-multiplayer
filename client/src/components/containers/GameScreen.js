@@ -9,7 +9,8 @@ import {
   resetCurrentWord,
   removeFromCurrentWord,
   changeCurrentWord,
-  updateRoom
+  updateRoom,
+  changeError
 } from '../../actions'
 
 const mapStateToProps = state => {
@@ -62,6 +63,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
+  changeError (error) {
+    dispatch(changeError(error))
+  },
   updateRoom (roomData) {
     dispatch(updateRoom(roomData))
   },

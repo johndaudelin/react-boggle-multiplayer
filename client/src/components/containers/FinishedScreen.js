@@ -1,5 +1,6 @@
 import FinishedScreen from '../ui/FinishedScreen'
 import { connect } from 'react-redux'
+import { changeError } from '../../actions'
 
 const mapStateToProps = state => {
   let rankedPlayers = []
@@ -37,6 +38,10 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+  changeError (error) {
+    dispatch(changeError(error))
+  }
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(FinishedScreen)
