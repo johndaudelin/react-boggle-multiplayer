@@ -119,8 +119,6 @@ class GameScreen extends React.Component {
 
   addScorecard () {
     this.props.socket.emit('ADD_SCORECARD', {
-      roomName: this.props.room.name,
-      userName: this.props.userName,
       scorecard: this.props.scorecard
     })
   }

@@ -4,7 +4,7 @@ const c = require('./constants.js')
 
 exports.enterRoom = (socket, config) => {
   if (roomExists(config.roomName)) {
-    let room = getRoom(config.roomName)
+    const room = getRoom(config.roomName)
     if (room.players.some(player => player.name === config.userName)) {
       console.log(
         `User ${config.userName} tried joining ${config.roomName} twice.`
@@ -16,11 +16,14 @@ exports.enterRoom = (socket, config) => {
         name: config.userName,
         scorecard: []
       })
+
+      socket.roomName = config.roomName
+      socket.userName = config.userName
       socket.join(config.roomName)
       app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
     }
   } else {
-    const room = {
+    room = {
       name: config.roomName,
       players: [
         {
@@ -35,10 +38,12 @@ exports.enterRoom = (socket, config) => {
     }
 
     console.log(`User ${config.userName} starting new room ${config.roomName}`)
-
     app.gameState.rooms.push(room)
+
+    socket.roomName = config.roomName
+    socket.userName = config.userName
     socket.join(config.roomName)
-    socket.emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
+    app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
   }
 }
 
@@ -57,6 +62,7 @@ exports.leaveRoom = (socket, config) => {
     )
     socket.to(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
     socket.leave(config.roomName)
+    socket.roomName = null
 
     if (room.players.length === 0) {
       console.log(
@@ -107,7 +113,7 @@ exports.startGame = (socket, config) => {
 
       app.intervals[config.roomName] = setInterval(() => {
         room.timer--
-        if (room.timer === 0) {
+        if (room.timer <= 0) {
           room.activeGame = false
           app.io.in(config.roomName).emit(c.SOCKET_EVENTS.END_GAME, room)
           clearInterval(app.intervals[config.roomName])
@@ -119,13 +125,19 @@ exports.startGame = (socket, config) => {
   }
 }
 
-exports.addScorecard = (socket, config) => {
+exports.addScorecard = (socket, config, scorecard) => {
   if (roomExists(config.roomName)) {
     let room = getRoom(config.roomName)
     let player = room.players.filter(
       player => player.name === config.userName
     )[0]
-    player.scorecard = config.scorecard
-    app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
+    if (player) {
+      player.scorecard = scorecard.scorecard
+      app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
+    } else {
+      console.log(
+        `Error finding scorecard for ${config.userName} in ${config.roomName}`
+      )
+    }
   }
 }

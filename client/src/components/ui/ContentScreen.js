@@ -29,10 +29,7 @@ class ContentScreen extends React.Component {
   }
 
   startGame () {
-    this.props.socket.emit('START_GAME', {
-      roomName: this.props.room.name,
-      userName: this.props.userName
-    })
+    this.props.socket.emit('START_GAME')
   }
 
   startSinglePlayerGame () {
@@ -45,10 +42,7 @@ class ContentScreen extends React.Component {
 
   leaveGame () {
     if (this.props.mode === 'multi') {
-      this.props.socket.emit('LEAVE_ROOM', {
-        roomName: this.props.room.name,
-        userName: this.props.userName
-      })
+      this.props.socket.emit('LEAVE_ROOM')
       this.props.updateRoom(null)
     } else {
       this.props.changeMode('multi')

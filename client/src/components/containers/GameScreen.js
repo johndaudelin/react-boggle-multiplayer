@@ -53,7 +53,6 @@ const mapStateToProps = state => {
     mode: state.mode,
     theme: state.theme,
     room: state.room,
-    userName: state.userName,
     scorecard: state.scorecard,
     board: state.mode === 'multi' ? state.room.board : state.singlePlayer.board,
     currentWord: state.currentWord,

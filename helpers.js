@@ -1,5 +1,12 @@
 const app = require('./app.js')
 
+exports.getConfig = socket => {
+  return {
+    userName: socket.userName,
+    roomName: socket.roomName
+  }
+}
+
 exports.getRoom = roomName => {
   return app.gameState.rooms.filter(room => room.name === roomName)[0]
 }
