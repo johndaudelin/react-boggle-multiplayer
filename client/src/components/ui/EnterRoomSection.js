@@ -42,6 +42,7 @@ class EnterRoomSection extends React.Component {
             placeholder='Enter your name'
             value={this.props.userName}
             onChange={this.handleNameInput}
+            maxLength='14'
           />
         </div>
         <div className='entryBox'>
@@ -50,6 +51,7 @@ class EnterRoomSection extends React.Component {
             placeholder='Enter room name'
             value={this.state.roomName}
             onChange={this.handleRoomInput}
+            maxLength='14'
           />
         </div>
         <div className='enterRoomButton'>
