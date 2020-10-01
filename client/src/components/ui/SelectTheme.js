@@ -16,17 +16,17 @@ export default class SelectTheme extends Component {
           Change Theme
         </span>
         <div className='themeIcons'>
-          {themes.map((theme, index) =>
-            this.props.theme !== theme ? (
-              <div
-                key={index}
-                className={theme}
-                onClick={() => {
-                  this.props.changeTheme(theme)
-                }}
-              ></div>
-            ) : null
-          )}
+          {themes.map((theme, index) => (
+            <div
+              key={index}
+              className={
+                this.props.theme !== theme ? theme : `${theme} selectedTheme`
+              }
+              onClick={() => {
+                this.props.changeTheme(theme)
+              }}
+            ></div>
+          ))}
         </div>
       </div>
     )
