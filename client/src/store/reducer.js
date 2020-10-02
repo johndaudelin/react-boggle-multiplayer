@@ -18,6 +18,8 @@ export const scorecard = (state = [], action) => {
   switch (action.type) {
     case Actions.ADD_WORD:
       return state.concat([action.payload])
+    case Actions.REMOVE_WORD:
+      return state.filter(entry => entry.word !== action.payload)
     case Actions.INITIALIZE_SCORECARD:
       return []
     default:

@@ -1,5 +1,6 @@
 import { Actions } from './constants'
 import fetch from 'isomorphic-fetch'
+import { animateScroll } from 'react-scroll'
 import { API_KEY, CUBES } from './constants'
 
 export const initializeScorecard = () => ({
@@ -16,6 +17,7 @@ export const addWord = () => (dispatch, getState) => {
         : state.room.board[index]
     )
     .join('')
+    .toLowerCase()
   const wordLength = word.length
 
   // Reject if this word has already been added (or is less than 3 characters)
@@ -69,6 +71,11 @@ export const addWord = () => (dispatch, getState) => {
             score
           }
         })
+
+        animateScroll.scrollToBottom({
+          containerId: 'wordList',
+          duration: '50'
+        })
       })
       .catch(error => {
         // HANDLE ERROR HERE
@@ -77,6 +84,13 @@ export const addWord = () => (dispatch, getState) => {
   }
 
   dispatch(resetCurrentWord())
+}
+
+export const removeWord = word => {
+  return {
+    type: Actions.REMOVE_WORD,
+    payload: word
+  }
 }
 
 export const changeCurrentWord = arrOfIndexes => {

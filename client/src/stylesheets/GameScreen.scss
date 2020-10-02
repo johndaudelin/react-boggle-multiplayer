@@ -46,8 +46,15 @@
 .wordEntry {
   margin: 5px 0px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: $text-grey;
   font-style: italic;
+}
+
+.removeWordButton:hover {
+  cursor: pointer;
 }
 
 .board {

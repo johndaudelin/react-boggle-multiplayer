@@ -1,20 +1,8 @@
 import React, { Component } from 'react'
-import WordEntry from './WordEntry'
-import { animateScroll } from 'react-scroll'
+import WordEntry from '../containers/WordEntry'
 import '../../stylesheets/GameScreen.scss'
 
 export default class WordList extends Component {
-  componentDidUpdate () {
-    this.scrollToBottom()
-  }
-
-  scrollToBottom () {
-    animateScroll.scrollToBottom({
-      containerId: 'wordList',
-      duration: '50'
-    })
-  }
-
   render () {
     return (
       <div className='wordList' id='wordList'>
