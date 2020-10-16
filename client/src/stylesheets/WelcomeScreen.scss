@@ -8,12 +8,40 @@
 }
 
 .enterRoomSection {
-  @extend .centeredColumn;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 2vh;
+}
+
+.customRoomSection {
+  @extend .centeredColumn;
 }
 
 .enterRoomButton {
   margin-top: 3vh;
+}
+
+.orSeparator {
+  font-size: 14px;
+  font-style: italic;
+  margin: 0vw 2vw;
+}
+
+.orSeparatorStandard {
+  @extend .orSeparator;
+  @extend .standardText;
+}
+
+.orSeparatorDarkTheme {
+  @extend .orSeparator;
+  @extend .darkThemeText;
+}
+
+.randomRoomSection {
+  @extend .centeredColumn;
+  margin: 20px;
 }
 
 .separator {
@@ -23,7 +51,7 @@
 
 .headerText {
   margin: 2vh 0px;
-  font-size: 3vh;
+  font-size: 2vh;
 }
 
 .headerTextStandard {
@@ -40,25 +68,18 @@
   margin-top: 2vh;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-height: 700px) {
   .headerText {
-    font-size: 7.5vw;
-    margin: 7.5vw 0px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .orSeparator {
+    font-size: 2.33vw;
   }
 
-  .enterRoomSection {
-    margin-bottom: 7.5vw;
-  }
-
-  .enterRoomButton {
-    margin-top: 10vw;
-  }
-
-  .separator {
-    margin-bottom: 7.5vw;
-  }
-
-  .singlePlayerButton {
-    margin-top: 1.25vw;
+  .randomRoomSection {
+    margin: 3.33vw;
   }
 }

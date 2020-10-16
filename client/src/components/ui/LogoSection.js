@@ -13,7 +13,7 @@ export default class LogoSection extends React.Component {
   }
   render () {
     return (
-      <div className='centeredColumn'>
+      <div className='logoSection'>
         <span
           className={
             this.props.theme === 'classic' || this.props.theme === 'beach'

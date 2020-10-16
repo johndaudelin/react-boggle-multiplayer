@@ -1,5 +1,10 @@
 @import 'globals';
 
+.logoSection {
+  @extend .centeredColumn;
+  margin-top: 10vh;
+}
+
 .poweredByText {
   font-size: 12px;
   margin-bottom: 5px;

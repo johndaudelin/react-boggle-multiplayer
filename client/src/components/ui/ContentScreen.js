@@ -24,6 +24,10 @@ class ContentScreen extends React.Component {
       this.props.updateRoom(roomData)
     })
 
+    this.props.socket.on('SEND_FINAL_USERNAME', userName => {
+      this.props.changeUserName(userName)
+    })
+
     this.props.socket.on('SEND_ERROR', error => {
       this.props.changeError(error)
     })

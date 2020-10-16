@@ -4,9 +4,19 @@ import Button from './Button'
 import EnterRoomSection from '../containers/EnterRoomSection'
 
 export default class WelcomeScreen extends React.Component {
+  constructor(props){
+    super(props)
+
+    this.handleNameInput = this.handleNameInput.bind(this)
+  }
+
   componentDidMount () {
     // Clear any displayed errors when this screen first loads
     this.props.changeError('')
+  }
+  
+  handleNameInput (event) {
+    this.props.changeUserName(event.target.value)
   }
 
   render () {
@@ -19,8 +29,17 @@ export default class WelcomeScreen extends React.Component {
               : 'headerTextDarkTheme'
           }
         >
-          Play With Friends
+          Play Online
         </span>
+        <div className='nameEntryBox'>
+          <input
+            type='text'
+            placeholder='Enter your name'
+            value={this.props.userName}
+            onChange={this.handleNameInput}
+            maxLength='14'
+          />
+        </div>
         <EnterRoomSection />
         <span className='separator'></span>
         <span

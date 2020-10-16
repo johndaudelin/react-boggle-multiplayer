@@ -13,6 +13,11 @@
   margin: 20px 20px 0px 20px;
 }
 
+.nameEntryBox {
+  @extend .entryBox;
+  margin-bottom: 20px;
+}
+
 .entryBox input::placeholder {
   color: $soft-grey;
 }

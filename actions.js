@@ -2,6 +2,67 @@ const app = require('./app.js')
 const { roomExists, getRoom, shuffle } = require('./helpers.js')
 const c = require('./constants.js')
 
+joinRoom = (socket, config) => {
+  const room = getRoom(config.roomName)
+
+  while (room.players.some(player => player.name === config.userName)) {
+    config.userName = config.userName + " (2)"
+  }
+  
+  console.log(`User ${config.userName} joining ${config.roomName}`)
+
+  room.players.push({
+    name: config.userName,
+    scorecard: []
+  })
+
+  socket.roomName = config.roomName
+  socket.userName = config.userName
+  socket.join(config.roomName)
+  socket.emit(c.SOCKET_EVENTS.SEND_FINAL_USERNAME, config.userName)
+  app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
+  return true
+}
+
+joinRandomRoom = (socket, config) => {
+  const numRooms = app.gameState.rooms.length
+  if (numRooms > 0){
+    config.roomName = app.gameState.rooms[Math.floor(Math.random() * numRooms)].name
+    joinRoom(socket, config)
+  } else {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    config.roomName = ""
+    for (let i = 0; i < 8; i ++){
+      config.roomName += letters[Math.floor(Math.random() * 26)]
+    }
+    createRoom(socket, config)
+  }
+}
+
+createRoom = (socket, config) => {
+  room = {
+    name: config.roomName,
+    players: [
+      {
+        name: config.userName,
+        scorecard: []
+      }
+    ],
+    waitingForPlayers: true,
+    activeGame: false,
+    timer: 90,
+    board: []
+  }
+
+  console.log(`User ${config.userName} starting new room ${config.roomName}`)
+  app.gameState.rooms.push(room)
+
+  socket.roomName = config.roomName
+  socket.userName = config.userName
+  socket.join(config.roomName)
+  app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
+}
+
 exports.enterRoom = (socket, config) => {
   if (config.roomName === '') {
     const errMsg = 'Must specify a room name.'
@@ -11,47 +72,15 @@ exports.enterRoom = (socket, config) => {
     const errMsg = 'Must specify a user name.'
     console.log(errMsg)
     socket.emit(c.SOCKET_EVENTS.SEND_ERROR, errMsg)
+  } else if (config.roomName === null) {
+    // Join random room
+    joinRandomRoom(socket, config)
   } else if (roomExists(config.roomName)) {
-    const room = getRoom(config.roomName)
-    if (room.players.some(player => player.name === config.userName)) {
-      const errMsg = `User with name ${config.userName} already in room ${config.roomName}`
-      console.log(errMsg)
-      socket.emit(c.SOCKET_EVENTS.SEND_ERROR, errMsg)
-    } else {
-      console.log(`User ${config.userName} joining ${config.roomName}`)
-
-      room.players.push({
-        name: config.userName,
-        scorecard: []
-      })
-
-      socket.roomName = config.roomName
-      socket.userName = config.userName
-      socket.join(config.roomName)
-      app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
-    }
+    // Join existing room
+    joinRoom(socket, config)
   } else {
-    room = {
-      name: config.roomName,
-      players: [
-        {
-          name: config.userName,
-          scorecard: []
-        }
-      ],
-      waitingForPlayers: true,
-      activeGame: false,
-      timer: 90,
-      board: []
-    }
-
-    console.log(`User ${config.userName} starting new room ${config.roomName}`)
-    app.gameState.rooms.push(room)
-
-    socket.roomName = config.roomName
-    socket.userName = config.userName
-    socket.join(config.roomName)
-    app.io.in(config.roomName).emit(c.SOCKET_EVENTS.UPDATE_ROOM_INFO, room)
+    // Create new room
+    createRoom(socket, config)
   }
 }
 

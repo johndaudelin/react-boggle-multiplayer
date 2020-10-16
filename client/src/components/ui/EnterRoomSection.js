@@ -12,18 +12,14 @@ class EnterRoomSection extends React.Component {
     }
 
     this.handleRoomInput = this.handleRoomInput.bind(this)
-    this.handleNameInput = this.handleNameInput.bind(this)
     this.joinRoom = this.joinRoom.bind(this)
+    this.joinRandomRoom = this.joinRandomRoom.bind(this)
   }
 
   handleRoomInput (event) {
     this.setState({
       roomName: event.target.value
     })
-  }
-
-  handleNameInput (event) {
-    this.props.changeUserName(event.target.value)
   }
 
   joinRoom () {
@@ -33,29 +29,39 @@ class EnterRoomSection extends React.Component {
     })
   }
 
+  joinRandomRoom() {
+    this.props.socket.emit('ENTER_ROOM', {
+      roomName: null,
+      userName: this.props.userName
+    })
+  }
+
   render () {
     return (
       <div className='enterRoomSection'>
-        <div className='entryBox'>
-          <input
-            type='text'
-            placeholder='Enter your name'
-            value={this.props.userName}
-            onChange={this.handleNameInput}
-            maxLength='14'
-          />
+        <div className='customRoomSection'>
+          <div className='entryBox'>
+            <input
+              type='text'
+              placeholder='Enter room name'
+              value={this.state.roomName}
+              onChange={this.handleRoomInput}
+              maxLength='14'
+            />
+          </div>
+          <div className='enterRoomButton'>
+            <Button onClick={this.joinRoom} type='alt' value='Enter Room' />
+          </div>
         </div>
-        <div className='entryBox'>
-          <input
-            type='text'
-            placeholder='Enter room name'
-            value={this.state.roomName}
-            onChange={this.handleRoomInput}
-            maxLength='14'
-          />
-        </div>
-        <div className='enterRoomButton'>
-          <Button onClick={this.joinRoom} type='alt' value='Enter Room' />
+        <span className={
+            this.props.theme === 'classic' || this.props.theme === 'beach'
+              ? 'orSeparatorStandard'
+              : 'orSeparatorDarkTheme'
+          }>
+            OR
+        </span>
+        <div className='randomRoomSection'>
+          <Button onClick={this.joinRandomRoom} type='alt' value='Join Random' />
         </div>
       </div>
     )

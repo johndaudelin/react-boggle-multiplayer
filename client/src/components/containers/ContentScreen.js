@@ -4,7 +4,8 @@ import {
   updateRoom,
   changeMode,
   initializeTimer,
-  changeError
+  changeError,
+  changeUserName
 } from '../../actions'
 
 const mapStateToProps = state => ({
@@ -27,6 +28,9 @@ const mapDispatchToProps = dispatch => ({
   },
   initializeTimer () {
     dispatch(initializeTimer())
+  },
+  changeUserName (userName) {
+    dispatch(changeUserName(userName))
   }
 })
 
