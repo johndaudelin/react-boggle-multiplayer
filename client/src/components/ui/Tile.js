@@ -64,10 +64,25 @@ export default class Tile extends Component {
       )
       const thisElement = document.getElementById(`tile${this.props.index}`)
       const thisPos = thisElement.getBoundingClientRect()
-      console.log("top: ", thisPos.top, ", left: ", thisPos.left, ", right: ", thisPos.right, ", bottom: ", thisPos.bottom)
-      console.log("clientX: ", touch.clientX, ", clientY: ", touch.clientY)
-      
-      if (pointerElement === thisElement) {
+      // console.log(
+      //   'top: ',
+      //   thisPos.top,
+      //   ', left: ',
+      //   thisPos.left,
+      //   ', right: ',
+      //   thisPos.right,
+      //   ', bottom: ',
+      //   thisPos.bottom
+      // )
+      // console.log('clientX: ', touch.clientX, ', clientY: ', touch.clientY)
+
+      if (
+        pointerElement === thisElement &&
+        thisPos.top <= touch.clientY - 5 &&
+        thisPos.bottom >= touch.clientY + 5 &&
+        thisPos.left <= touch.clientX - 5 &&
+        thisPos.right >= touch.clientX + 5
+      ) {
         if (this.props.clickable && !this.props.lastOneClicked) {
           this.handleTileAdd()
         }
