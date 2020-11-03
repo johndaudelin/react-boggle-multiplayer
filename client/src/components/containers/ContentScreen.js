@@ -24,6 +24,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateRoom(roomData))
   },
   changeMode (mode) {
+    if (mode === 'single'){
+      dispatch(initializeTimer())
+    }
     dispatch(changeMode(mode))
   },
   initializeTimer () {
