@@ -50,7 +50,7 @@ npm install
 npm run build
 cd ..
 screen
-npm start
+sudo PORT=80 npm start
 ```
 
 ## Code
