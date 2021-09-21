@@ -27,7 +27,7 @@ const env = process.env.NODE_ENV || 'development'
 const DEV_SERVER = 'http://127.0.0.1:4001'
 
 // This is the private IP address for my BoggleClient network interface in us-east-1
-const PROD_SERVER = 'http://172.31.82.177:4001'
+const PROD_SERVER = 'http://172.31.82.177'
 export const SERVER_ENDPOINT = env === 'development' ? DEV_SERVER : PROD_SERVER
 
 export const Actions = {
