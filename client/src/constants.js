@@ -14,7 +14,7 @@ export const CUBES = [
   'EEGHNW',
   'AFFKPS',
   'HLNNRZ',
-  'DEILRX'
+  'DEILRX',
 ]
 
 export const themes = ['classic', 'space', 'beach', 'chalk']
@@ -25,9 +25,7 @@ export const API_KEY = '7d9f1980-6810-488c-8baf-0e61bd2dd99b'
 
 const env = process.env.NODE_ENV || 'development'
 const DEV_SERVER = 'http://127.0.0.1:4001'
-
-// This should be the public IP address for the BoggleClient ec2 instance
-const PROD_SERVER = 'http://3.87.141.48'
+const PROD_SERVER = 'http://jdboggle.com'
 export const SERVER_ENDPOINT = env === 'development' ? DEV_SERVER : PROD_SERVER
 
 export const Actions = {
@@ -44,21 +42,21 @@ export const Actions = {
   UPDATE_ROOM: 'UPDATE_ROOM',
   CHANGE_MODE: 'CHANGE_MODE',
   CHANGE_THEME: 'CHANGE_THEME',
-  CHANGE_ERROR: 'CHANGE_ERROR'
+  CHANGE_ERROR: 'CHANGE_ERROR',
 }
 
 export const defaultState = {
   error: '',
   theme: 'classic',
   userName: '',
-  mode: 'multi',
+  mode: 'welcome',
   scorecard: [],
   currentWord: [],
   singlePlayer: {
     board: [],
-    timer: 90
+    timer: 90,
   },
-  room: null
+  room: null,
 }
 
 // For reference only. Not used in game code.
@@ -69,24 +67,24 @@ export const sampleState = {
   scorecard: [
     {
       word: 'cat',
-      score: '1'
+      score: '1',
     },
     {
       word: 'that',
-      score: '1'
+      score: '1',
     },
     {
       word: 'eat',
-      score: '1'
+      score: '1',
     },
     {
       word: 'cheat',
-      score: '2'
-    }
+      score: '2',
+    },
   ],
   currentWord: [
     [1, 3],
-    [0, 7]
+    [0, 7],
   ],
   singlePlayer: {
     timer: 90,
@@ -106,8 +104,8 @@ export const sampleState = {
       'T',
       'H',
       'A',
-      'Q'
-    ]
+      'Q',
+    ],
   },
   room: {
     name: 'Room1',
@@ -117,35 +115,35 @@ export const sampleState = {
         scorecard: [
           {
             word: 'cat',
-            score: '1'
+            score: '1',
           },
           {
             word: 'that',
-            score: '1'
+            score: '1',
           },
           {
             word: 'eat',
-            score: '1'
+            score: '1',
           },
           {
             word: 'cheat',
-            score: '2'
-          }
-        ]
+            score: '2',
+          },
+        ],
       },
       {
         name: 'Daniel',
         scorecard: [
           {
             word: 'eat',
-            score: '1'
+            score: '1',
           },
           {
             word: 'ate',
-            score: '1'
-          }
-        ]
-      }
+            score: '1',
+          },
+        ],
+      },
     ],
     waitingForPlayers: false,
     activeGame: false,
@@ -166,7 +164,7 @@ export const sampleState = {
       'T',
       'H',
       'A',
-      'Q'
-    ]
-  }
+      'Q',
+    ],
+  },
 }
