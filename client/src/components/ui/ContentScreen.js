@@ -4,6 +4,7 @@ import ErrorBar from '../containers/ErrorBar'
 import Header from '../containers/Header'
 import LogoSection from '../containers/LogoSection'
 import WelcomeScreen from '../containers/WelcomeScreen'
+import PlayOnlineScreen from '../containers/PlayOnlineScreen'
 import WaitingScreen from '../containers/WaitingScreen'
 import GameScreen from '../containers/GameScreen'
 import FinishedScreen from '../containers/FinishedScreen'
@@ -11,15 +12,16 @@ import SocketContext from '../socket-context'
 import '../../stylesheets/index.scss'
 
 class ContentScreen extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.startGame = this.startGame.bind(this)
     this.startSinglePlayerGame = this.startSinglePlayerGame.bind(this)
     this.leaveGame = this.leaveGame.bind(this)
+    this.enterMultiMode = this.enterMultiMode.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.socket.on('UPDATE_ROOM_INFO', roomData => {
       this.props.updateRoom(roomData)
     })
@@ -33,32 +35,41 @@ class ContentScreen extends React.Component {
     })
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.leaveGame()
   }
 
-  startGame () {
+  startGame() {
     this.props.socket.emit('START_GAME')
   }
 
-  startSinglePlayerGame () {
-    if (this.props.mode === 'multi') {
+  startSinglePlayerGame() {
+    if (this.props.mode === 'multi' || this.props.mode === 'welcome') {
       this.props.changeMode('single')
     } else {
       this.props.initializeTimer()
     }
   }
 
-  leaveGame () {
-    if (this.props.mode === 'multi') {
-      this.props.socket.emit('LEAVE_ROOM')
-      this.props.updateRoom(null)
-    } else {
+  enterMultiMode() {
+    if (this.props.mode === 'welcome') {
       this.props.changeMode('multi')
+    } else {
+      console.log(
+        "WARNING: tried entering 'multi' mode when mode was not currently 'welcome'"
+      )
     }
   }
 
-  render () {
+  leaveGame() {
+    if (this.props.mode === 'multi') {
+      this.props.socket.emit('LEAVE_ROOM')
+      this.props.updateRoom(null)
+    }
+    this.props.changeMode('welcome')
+  }
+
+  render() {
     return (
       <div className={`${this.props.theme}App`}>
         <ErrorBar />
@@ -66,11 +77,14 @@ class ContentScreen extends React.Component {
           <SelectTheme />
           <div>
             <Header />
-            {this.props.mode === 'multi' ? (
+            {this.props.mode === 'welcome' ? (
+              <WelcomeScreen
+                startSinglePlayerGame={this.startSinglePlayerGame}
+                enterMultiMode={this.enterMultiMode}
+              />
+            ) : this.props.mode === 'multi' ? (
               !this.props.room ? (
-                <WelcomeScreen
-                  startSinglePlayerGame={this.startSinglePlayerGame}
-                />
+                <PlayOnlineScreen />
               ) : this.props.room.waitingForPlayers ? (
                 <WaitingScreen
                   startGame={this.startGame}

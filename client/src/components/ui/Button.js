@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../../stylesheets/Button.scss'
 
 export default class Button extends Component {
-  render () {
+  render() {
     return (
       <div
         className={`${
@@ -13,7 +13,7 @@ export default class Button extends Component {
             : this.props.type === 'primary'
             ? 'primaryButton'
             : 'altButton'
-        }`}
+        } ${this.props.welcomeScreenButton ? 'welcomeScreenButton' : ''}`}
         onClick={this.props.disabled ? null : this.props.onClick}
       >
         {this.props.value}
