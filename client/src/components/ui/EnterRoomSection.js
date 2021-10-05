@@ -4,11 +4,11 @@ import SocketContext from '../socket-context'
 import '../../stylesheets/WelcomeScreen.scss'
 
 class EnterRoomSection extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
-      roomName: ''
+      roomName: '',
     }
 
     this.handleRoomInput = this.handleRoomInput.bind(this)
@@ -16,31 +16,31 @@ class EnterRoomSection extends React.Component {
     this.joinRandomRoom = this.joinRandomRoom.bind(this)
   }
 
-  handleRoomInput (event) {
+  handleRoomInput(event) {
     this.setState({
-      roomName: event.target.value
+      roomName: event.target.value,
     })
   }
 
-  joinRoom () {
+  joinRoom() {
     this.props.socket.emit('ENTER_ROOM', {
       roomName: this.state.roomName,
-      userName: this.props.userName
+      userName: this.props.userName,
     })
   }
 
   joinRandomRoom() {
     this.props.socket.emit('ENTER_ROOM', {
       roomName: null,
-      userName: this.props.userName
+      userName: this.props.userName,
     })
   }
 
-  render () {
+  render() {
     return (
       <div className='enterRoomSection'>
         <div className='customRoomSection'>
-          <div className='entryBox'>
+          <div className='enterRoomNameBox'>
             <input
               type='text'
               placeholder='Enter room name'
@@ -53,15 +53,19 @@ class EnterRoomSection extends React.Component {
             <Button onClick={this.joinRoom} type='alt' value='Enter Room' />
           </div>
         </div>
-        <span className={
+        <div
+          className={
             this.props.theme === 'classic' || this.props.theme === 'beach'
               ? 'orSeparatorStandard'
               : 'orSeparatorDarkTheme'
-          }>
-            OR
-        </span>
+          }
+        ></div>
         <div className='randomRoomSection'>
-          <Button onClick={this.joinRandomRoom} type='alt' value='Join Random' />
+          <Button
+            onClick={this.joinRandomRoom}
+            type='alt'
+            value='Join Random'
+          />
         </div>
       </div>
     )

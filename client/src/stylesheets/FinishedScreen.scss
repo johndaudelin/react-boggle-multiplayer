@@ -21,7 +21,7 @@
 .wrapContainer {
   @extend .horizontallyCentered;
   width: 90vw;
-  margin: 30px 25px;
+  margin: 0px 25px;
   flex-wrap: wrap;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .finalScoreSection {
-  margin: 2vh 0px 4vh 0px;
+  margin: 2vh 0px 3vh 0px;
   color: $text-grey;
 }
 
@@ -56,16 +56,16 @@
 }
 
 .playAgainButton {
-  margin: 5vh 0px 2vh 0px;
+  margin: 5vh 0px 1vh 0px;
 }
 
 .leaveRoomButton {
-  margin: 2vh 0px 6vh 0px;
+  margin: 1vh 0px 10vh 0px;
 }
 
 @media screen and (max-width: 600px) {
   .wrapContainer {
-    margin: 5vw 4.16vw;
+    margin: 0px 4.16vw;
   }
 
   .congratulations {

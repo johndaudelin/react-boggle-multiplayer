@@ -48,7 +48,7 @@ export const room = (state = null, action) => {
 export const singlePlayer = (
   state = {
     board: [],
-    timer: 90
+    timer: 90,
   },
   action
 ) => {
@@ -56,24 +56,24 @@ export const singlePlayer = (
     case Actions.DECREASE_TIMER:
       return {
         board: [...state.board],
-        timer: state.timer - 1
+        timer: state.timer - 1,
       }
     case Actions.INITIALIZE_TIMER:
       return {
         board: [...state.board],
-        timer: 90
+        timer: 90,
       }
     case Actions.INITIALIZE_BOARD:
       return {
         board: action.payload,
-        timer: state.timer
+        timer: state.timer,
       }
     default:
       return state
   }
 }
 
-export const mode = (state = 'multi', action) => {
+export const mode = (state = 'welcome', action) => {
   switch (action.type) {
     case Actions.CHANGE_MODE:
       return action.payload
@@ -108,5 +108,5 @@ export default combineReducers({
   scorecard,
   currentWord,
   userName,
-  room
+  room,
 })

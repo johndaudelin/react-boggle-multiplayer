@@ -7,7 +7,7 @@
 .scorecard {
   border: 1px solid $soft-grey;
   border-radius: 10px 10px 0px 10px;
-  margin: 15px 15px;
+  margin: 0px 15px;
   position: relative;
   background-color: white;
 }
@@ -90,7 +90,7 @@
 @media screen and (max-width: 600px) {
   .scorecard {
     border-radius: 1.66vw 1.66vw 0px 1.66vw;
-    margin: 2.5vw 2.5vw;
+    margin: 0px 2.5vw;
     font-size: 2.66vw;
   }
 

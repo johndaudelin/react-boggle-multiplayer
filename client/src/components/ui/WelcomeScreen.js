@@ -1,61 +1,34 @@
 import React from 'react'
 import '../../stylesheets/WelcomeScreen.scss'
 import Button from './Button'
-import EnterRoomSection from '../containers/EnterRoomSection'
 
 export default class WelcomeScreen extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-
-    this.handleNameInput = this.handleNameInput.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     // Clear any displayed errors when this screen first loads
     this.props.changeError('')
   }
-  
-  handleNameInput (event) {
-    this.props.changeUserName(event.target.value)
-  }
 
-  render () {
+  render() {
     return (
       <div className='welcomeScreen'>
-        <span
-          className={
-            this.props.theme === 'classic' || this.props.theme === 'beach'
-              ? 'headerTextStandard'
-              : 'headerTextDarkTheme'
-          }
-        >
-          Play Online
-        </span>
-        <div className='nameEntryBox'>
-          <input
-            type='text'
-            placeholder='Enter your name'
-            value={this.props.userName}
-            onChange={this.handleNameInput}
-            maxLength='14'
+        <div className='multiPlayerButton'>
+          <Button
+            onClick={this.props.enterMultiMode}
+            type='alt'
+            welcomeScreenButton={true}
+            value='Play With Friends'
           />
         </div>
-        <EnterRoomSection />
-        <span className='separator'></span>
-        <span
-          className={
-            this.props.theme === 'classic' || this.props.theme === 'beach'
-              ? 'headerTextStandard'
-              : 'headerTextDarkTheme'
-          }
-        >
-          Play By Yourself
-        </span>
         <div className='singlePlayerButton'>
           <Button
             onClick={this.props.startSinglePlayerGame}
             type='primary'
-            value='Start Game'
+            welcomeScreenButton={true}
+            value='Play By Yourself'
           />
         </div>
       </div>
