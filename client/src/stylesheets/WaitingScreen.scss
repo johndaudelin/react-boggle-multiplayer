@@ -2,11 +2,11 @@
 
 .waitingScreen {
   @extend .centeredColumn;
-  margin-bottom: 75px;
+  margin-bottom: 10vh;
 }
 
 .roomLabel {
-  margin-top: 50px;
+  margin-top: 10vh;
   font-size: 20px;
 }
 
@@ -72,8 +72,8 @@
 
 .waitingForHost {
   @extend .horizontallyCentered;
-  margin-top: 50px;
-  margin-bottom: 75px;
+  margin-top: 10vh;
+  margin-bottom: 12vh;
 }
 
 .waitingForHostStandard {
@@ -89,10 +89,9 @@
 @media screen and (max-width: 400px) {
   .roomLabel {
     font-size: 5vw;
-    margin-top: 12.5vw;
   }
 
-  .icon {
+  .playerIcon {
     font-size: 7.5vw;
   }
 
@@ -119,8 +118,6 @@
   }
 
   .waitingForHost {
-    margin-bottom: 18.75vw;
-    margin-top: 12.5vw;
     font-size: 4vw;
   }
 
