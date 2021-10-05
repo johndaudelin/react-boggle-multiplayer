@@ -4,6 +4,7 @@
 
 .welcomeScreen {
   @extend .centeredColumn;
+  margin-top: 5vh;
   margin-bottom: 5vh;
 }
 
@@ -65,7 +66,7 @@
 }
 
 .singlePlayerButton {
-  margin-top: 2vh;
+  margin-top: 3vh;
 }
 
 .multiPlayerButton {

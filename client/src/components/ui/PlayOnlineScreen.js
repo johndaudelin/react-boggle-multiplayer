@@ -1,25 +1,24 @@
 import React from 'react'
 import '../../stylesheets/WelcomeScreen.scss'
-import Button from './Button'
 import EnterRoomSection from '../containers/EnterRoomSection'
 
 export default class PlayOnlineScreen extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
 
     this.handleNameInput = this.handleNameInput.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     // Clear any displayed errors when this screen first loads
     this.props.changeError('')
   }
-  
-  handleNameInput (event) {
+
+  handleNameInput(event) {
     this.props.changeUserName(event.target.value)
   }
 
-  render () {
+  render() {
     return (
       <div className='welcomeScreen'>
         <span

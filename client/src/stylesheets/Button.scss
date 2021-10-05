@@ -78,4 +78,9 @@ body.hasHover .button:not(.disabledButton):hover::before {
     border-radius: 1.66vw;
     font-size: 2.33vw;
   }
+
+  .welcomeScreenButton {
+    width: 20vw;
+    padding: 1.33vw 2.5vw;
+  }
 }

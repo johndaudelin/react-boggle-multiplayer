@@ -2,26 +2,21 @@
 
 .logoSection {
   @extend .centeredColumn;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $soft-grey;
   margin-top: 10vh;
 }
 
 .poweredByText {
   font-size: 12px;
+  margin-top: 5px;
   margin-bottom: 5px;
 }
 
-.poweredByTextStandard {
-  @extend .poweredByText;
-  @extend .standardText;
-}
-
-.poweredByTextDarkTheme {
-  @extend .poweredByText;
-  @extend .darkThemeText;
-}
-
 .logo {
-  margin-bottom: 15px;
   width: 70px;
   height: 70px;
 }
@@ -34,6 +29,5 @@
 
   .poweredByText {
     font-size: 2vw;
-    margin-bottom: 0.833vw;
   }
 }
