@@ -1,6 +1,5 @@
 import React from 'react'
 import '../../stylesheets/LogoSection.scss'
-import logo from '../../img/merriam-webster.png' // Tell webpack this JS file uses this image
 
 export default class LogoSection extends React.Component {
   componentDidMount() {
