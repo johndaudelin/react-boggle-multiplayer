@@ -15,7 +15,15 @@
 
 .nameEntryBox {
   @extend .entryBox;
-  margin-bottom: 20px;
+  margin-bottom: 5vh;
+}
+
+.enterRoomNameBox {
+  @extend .entryBox;
+}
+
+.enterRoomNameBox input {
+  margin-top: 0px;
 }
 
 .entryBox input::placeholder {

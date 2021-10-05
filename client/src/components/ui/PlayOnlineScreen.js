@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './Button'
 import '../../stylesheets/WelcomeScreen.scss'
 import EnterRoomSection from '../containers/EnterRoomSection'
 
@@ -21,15 +22,6 @@ export default class PlayOnlineScreen extends React.Component {
   render() {
     return (
       <div className='welcomeScreen'>
-        <span
-          className={
-            this.props.theme === 'classic' || this.props.theme === 'beach'
-              ? 'headerTextStandard'
-              : 'headerTextDarkTheme'
-          }
-        >
-          Play Online
-        </span>
         <div className='nameEntryBox'>
           <input
             type='text'
@@ -40,6 +32,13 @@ export default class PlayOnlineScreen extends React.Component {
           />
         </div>
         <EnterRoomSection />
+        <div className='returnButton'>
+          <Button
+            onClick={this.props.exitMultiMode}
+            type='cancel'
+            value='Return'
+          />
+        </div>
       </div>
     )
   }

@@ -21,13 +21,19 @@
 }
 
 .enterRoomButton {
-  margin-top: 3vh;
+  margin-top: 2vh;
+}
+
+.returnButton {
+  margin-top: 15vh;
+  margin-bottom: 20vh;
 }
 
 .orSeparator {
-  font-size: 14px;
-  font-style: italic;
-  margin: 0vw 2vw;
+  width: 1px;
+  height: 12vh;
+  background-color: $soft-grey;
+  margin: 0vw 1vw;
 }
 
 .orSeparatorStandard {

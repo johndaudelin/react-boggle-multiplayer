@@ -19,6 +19,7 @@ class ContentScreen extends React.Component {
     this.startSinglePlayerGame = this.startSinglePlayerGame.bind(this)
     this.leaveGame = this.leaveGame.bind(this)
     this.enterMultiMode = this.enterMultiMode.bind(this)
+    this.exitMultiMode = this.exitMultiMode.bind(this)
   }
 
   componentDidMount() {
@@ -61,6 +62,16 @@ class ContentScreen extends React.Component {
     }
   }
 
+  exitMultiMode() {
+    if (this.props.mode === 'multi') {
+      this.props.changeMode('welcome')
+    } else {
+      console.log(
+        "WARNING: tried exiting 'multi' mode when mode was not currently 'multi'"
+      )
+    }
+  }
+
   leaveGame() {
     if (this.props.mode === 'multi') {
       this.props.socket.emit('LEAVE_ROOM')
@@ -84,7 +95,7 @@ class ContentScreen extends React.Component {
               />
             ) : this.props.mode === 'multi' ? (
               !this.props.room ? (
-                <PlayOnlineScreen />
+                <PlayOnlineScreen exitMultiMode={this.exitMultiMode} />
               ) : this.props.room.waitingForPlayers ? (
                 <WaitingScreen
                   startGame={this.startGame}
