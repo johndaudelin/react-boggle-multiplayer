@@ -1,0 +1,23 @@
+@import "globals";
+
+.buyMeACoffeeContainer {
+  @extend .centeredColumn;
+  position: absolute;
+  top: 1.5vw;
+  right: 1.5vw;
+}
+
+.buyMeACoffeeImage {
+  width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+  .buyMeACoffeeContainer {
+    top: 15px;
+    right: 15px;
+  }
+
+  .buyMeACoffeeImage {
+    width: 25vw;
+  }
+}

@@ -29,6 +29,8 @@ Then, in a separate terminal window, run the following commands to begin the cli
 
 You should see a browser window automatically open and the Boggle web app displayed on `http://localhost:8080`. Enjoy!
 
+NOTE: If you see compilation errors, check that you are running on Node 14.
+
 ## AWS EC2 Setup
 
 Boot up a free tier, Amazon Linux AMI EC2 with the following user data:
@@ -58,6 +60,10 @@ sudo PORT=80 npm start
 The client application code was taken initially from my previous project, [react-boggle](https://github.com/Cowboy46/react-boggle), which is a completely single-player version of the game.
 
 I followed the steps on [this blog post](https://www.valentinog.com/blog/socket-react/#socketio-react-and-nodejs-hands-on) for getting started with Express and Socket.io.
+
+## Improvement Ideas
+
+- Add .env file logic for easy dev vs. prod configuring.
 
 ## History
 
