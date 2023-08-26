@@ -6,7 +6,7 @@ A multiplayer Boggle game created in React.
 
 ## Play
 
-The game is hosted [here](http://ec2-35-153-50-80.compute-1.amazonaws.com:4001) You can also follow the sections below to setup and run the app locally.
+The game is hosted [here](http://jdboggle.com). You can also follow the sections below to setup and run the app locally.
 
 ## Local Setup
 
@@ -38,22 +38,32 @@ Boot up a free tier, Amazon Linux AMI EC2 with the following user data:
 ```
 #!/bin/bash
 sudo yum install -y git
-curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
-sudo yum install -y nodejs
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install 14
+sudo yum install -y nodejs #Needed for using npm
 ```
 
-Once your EC2 is running, ssh into it and run the following commands:
+Make sure you modify the Security Group that is added to allow inbound traffic to port 4001 from all IP addresses.
+
+Create a Load Balancer that routes incoming traffic on port 80 and 443 to port 4001 on your EC2 instance (to do this, you will need to create a target group as well and attach a single target of your created EC2 instance, specifying HTTP as the protocol for the target group and 4001 as the port for the target/EC2 instance).
+
+Once your EC2 instance is running, ssh into it and run the following commands:
 
 ```
 cd ~
 git clone https://github.com/johndaudelin/react-boggle-multiplayer.git
-cd react-boggle-multiplayer/client
+cd react-boggle-multiplayer
+npm install
+cd /client
 npm install
 npm run build
 cd ..
 screen
-sudo PORT=80 npm start
+NODE_ENV=production npm start
 ```
+
+If you have a Route 53 domain you want to route traffic from, create an Alias record set on the R53 domain that routes to the load balancer you created. Configure the PROD_SERVER url in client/src/constants.js to match your domain record URL. Voila! Navigating to your Route 53 domain URL should bring you to the web server hosted Boggle game.
 
 ## Code
 
