@@ -3,8 +3,8 @@
 .buyMeACoffeeContainer {
   @extend .centeredColumn;
   position: absolute;
-  top: 1.5vw;
-  right: 1.5vw;
+  top: 1vw;
+  right: 1vw;
 }
 
 .buyMeACoffeeImage {
@@ -13,8 +13,8 @@
 
 @media screen and (max-width: 900px) {
   .buyMeACoffeeContainer {
-    top: 15px;
-    right: 15px;
+    top: 1vw;
+    right: 1vw;
   }
 
   .buyMeACoffeeImage {

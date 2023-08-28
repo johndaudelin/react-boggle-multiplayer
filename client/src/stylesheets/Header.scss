@@ -1,4 +1,4 @@
-@import 'globals';
+@import "globals";
 
 .header {
   @extend .horizontallyCentered;
@@ -19,6 +19,12 @@
 
 @media screen and (max-height: 500px) {
   .header {
-    font-size: 40px;
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    font-size: 30px;
   }
 }
