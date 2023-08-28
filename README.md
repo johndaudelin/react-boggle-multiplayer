@@ -31,7 +31,27 @@ You should see a browser window automatically open and the Boggle web app displa
 
 NOTE: If you see compilation errors, check that you are running on Node 14.
 
-## AWS EC2 Setup
+## Deploying changes
+
+If you want to deploy a change to the currently running application on [jdboggle.com](http://jdboggle.com), login to the AWS console, SSH into the EC2 instance on which the web app is running, and run the following terminal commands to restart the Express app with the latest changes from the master branch of this repo:
+
+```console
+screen -r
+```
+
+Hit Ctrl+C to stop the express app.
+
+```console
+cd client
+git pull
+npm run build
+cd ..
+NODE_ENV=production npm start
+```
+
+The latest changes should immediately be deployed to [jdboggle.com](http://jdboggle.com).
+
+## Initial AWS EC2 Setup
 
 Boot up a free tier, Amazon Linux AMI EC2 with the following user data:
 
