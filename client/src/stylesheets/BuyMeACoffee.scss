@@ -21,3 +21,14 @@
     width: 20vw;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .buyMeACoffeeContainer {
+    top: 2vw;
+    right: 2vw;
+  }
+
+  .buyMeACoffeeImage {
+    width: 30vw;
+  }
+}
